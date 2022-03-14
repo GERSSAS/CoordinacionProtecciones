@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Helpers.CimInterface" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Helpers.CimInterface" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="CimExportOptions">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AreasToExport" nillable="true" type="q1:ArrayOfguid" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AreasToExportNames" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="BalticRSCExport" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BoundaryAreaName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BoundaryPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DynamicLineRatingPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ENTSOEZIP" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EqFileCIMID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExcludeBRELL" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExportAsCGMES3" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExportBoundary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExportDL" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExportDY" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExportEQ" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExportGL" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExportMerged" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExportSSH" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExportSV" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExportSVShortCircuit" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExportTP" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FileHeaderComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsAutomatedExport" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KeepEQIDConstant" type="xs:boolean" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ListOfMASForSVExport" nillable="true" type="q3:ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" />
+      <xs:element minOccurs="0" name="MAS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Period" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScenarioDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CimExportOptions" nillable="true" type="tns:CimExportOptions" />
+</xs:schema>

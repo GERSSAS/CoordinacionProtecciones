@@ -1,0 +1,1143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.TechData" />
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models" />
+  <xs:complexType name="ArrayOfOperDataTopologyData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OperDataTopologyData" nillable="true" type="tns:OperDataTopologyData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOperDataTopologyData" nillable="true" type="tns:ArrayOfOperDataTopologyData" />
+  <xs:complexType name="OperDataTopologyData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ElementName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ElementType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Switch1" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Switch2" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Switch3" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Switch4" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperDataTopologyData" nillable="true" type="tns:OperDataTopologyData" />
+  <xs:complexType name="ArrayOfOperData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OperData" nillable="true" type="tns:OperData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOperData" nillable="true" type="tns:ArrayOfOperData" />
+  <xs:complexType name="OperData">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.TechData" base="q1:NotifyBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperData" nillable="true" type="tns:OperData" />
+  <xs:complexType name="Trafo2WindingOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsRegulated1" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsRegulated2" type="xs:boolean" />
+          <xs:element minOccurs="0" name="P" type="xs:double" />
+          <xs:element minOccurs="0" name="PrimarySideEarthing" type="tns:EarthingTypes" />
+          <xs:element minOccurs="0" name="SecondarySideEarthing" type="tns:EarthingTypes" />
+          <xs:element minOccurs="0" name="Tap1" type="xs:int" />
+          <xs:element minOccurs="0" name="Tap2" type="xs:int" />
+          <xs:element minOccurs="0" name="U" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Trafo2WindingOperData" nillable="true" type="tns:Trafo2WindingOperData" />
+  <xs:simpleType name="EarthingTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Direct" />
+      <xs:enumeration value="Impedance" />
+      <xs:enumeration value="Isolated" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EarthingTypes" nillable="true" type="tns:EarthingTypes" />
+  <xs:complexType name="Trafo3WindingOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsRegulated1" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsRegulated2" type="xs:boolean" />
+          <xs:element minOccurs="0" name="P" type="xs:double" />
+          <xs:element minOccurs="0" name="PrimarySideEarthing" type="tns:EarthingTypes" />
+          <xs:element minOccurs="0" name="SecondarySideEarthing" type="tns:EarthingTypes" />
+          <xs:element minOccurs="0" name="Tap1" type="xs:int" />
+          <xs:element minOccurs="0" name="Tap2" type="xs:int" />
+          <xs:element minOccurs="0" name="TertiarySideEarthing" type="tns:EarthingTypes" />
+          <xs:element minOccurs="0" name="U" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Trafo3WindingOperData" nillable="true" type="tns:Trafo3WindingOperData" />
+  <xs:complexType name="Trafo2WindingAsymmetricalOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsRegulated" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Tap" type="xs:int" />
+          <xs:element minOccurs="0" name="U" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Trafo2WindingAsymmetricalOperData" nillable="true" type="tns:Trafo2WindingAsymmetricalOperData" />
+  <xs:complexType name="TrafoRegulatorOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsRegulated" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Tap1" type="xs:int" />
+          <xs:element minOccurs="0" name="Tap2" type="xs:int" />
+          <xs:element minOccurs="0" name="Tap3" type="xs:int" />
+          <xs:element minOccurs="0" name="U1" type="xs:double" />
+          <xs:element minOccurs="0" name="U2" type="xs:double" />
+          <xs:element minOccurs="0" name="U3" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TrafoRegulatorOperData" nillable="true" type="tns:TrafoRegulatorOperData" />
+  <xs:complexType name="ACDisperseGenerationOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CosPhi" type="xs:double" />
+          <xs:element minOccurs="0" name="I" type="xs:double" />
+          <xs:element minOccurs="0" name="IsCapacitive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsVariable" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LFType" type="tns:LfTypesACDisperseGen" />
+          <xs:element minOccurs="0" name="P" type="xs:double" />
+          <xs:element minOccurs="0" name="PScaling" type="xs:double" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models" minOccurs="0" name="Phase" type="q2:phases_connect" />
+          <xs:element minOccurs="0" name="Q" type="xs:double" />
+          <xs:element minOccurs="0" name="QScaling" type="xs:double" />
+          <xs:element minOccurs="0" name="S" type="xs:double" />
+          <xs:element minOccurs="0" name="SlackPortion" type="xs:double" />
+          <xs:element minOccurs="0" name="U" type="xs:double" />
+          <xs:element minOccurs="0" name="Uangle" type="xs:double" />
+          <xs:element minOccurs="0" name="Units" type="tns:UnitTypes" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ACDisperseGenerationOperData" nillable="true" type="tns:ACDisperseGenerationOperData" />
+  <xs:simpleType name="LfTypesACDisperseGen">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SL" />
+      <xs:enumeration value="PV" />
+      <xs:enumeration value="PQ" />
+      <xs:enumeration value="PC" />
+      <xs:enumeration value="IC" />
+      <xs:enumeration value="SC" />
+      <xs:enumeration value="cosfP" />
+      <xs:enumeration value="cosfU" />
+      <xs:enumeration value="QfU" />
+      <xs:enumeration value="cosBranch" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LfTypesACDisperseGen" nillable="true" type="tns:LfTypesACDisperseGen" />
+  <xs:simpleType name="UnitTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HV" />
+      <xs:enumeration value="LV" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UnitTypes" nillable="true" type="tns:UnitTypes" />
+  <xs:complexType name="AsynchronousMachineOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CosPhi" type="xs:double" />
+          <xs:element minOccurs="0" name="DFIGP" type="xs:double" />
+          <xs:element minOccurs="0" name="DFIGQ" type="xs:double" />
+          <xs:element minOccurs="0" name="DFIGSlip" type="xs:double" />
+          <xs:element minOccurs="0" name="DFIGTorque" type="xs:double" />
+          <xs:element minOccurs="0" name="DFIGType" type="tns:DfigTypes" />
+          <xs:element minOccurs="0" name="IsCapacitive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsVariable" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LFType" type="tns:LfTypesASM" />
+          <xs:element minOccurs="0" name="P" type="xs:double" />
+          <xs:element minOccurs="0" name="PScaling" type="xs:double" />
+          <xs:element minOccurs="0" name="Q" type="xs:double" />
+          <xs:element minOccurs="0" name="QScaling" type="xs:double" />
+          <xs:element minOccurs="0" name="ScalingType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AsynchronousMachineOperData" nillable="true" type="tns:AsynchronousMachineOperData" />
+  <xs:simpleType name="DfigTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DFIGPTes" />
+      <xs:enumeration value="DFIGPQs" />
+      <xs:enumeration value="DFIGPQ" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DfigTypes" nillable="true" type="tns:DfigTypes" />
+  <xs:simpleType name="LfTypesASM">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MLoad" />
+      <xs:enumeration value="PQ" />
+      <xs:enumeration value="PC" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LfTypesASM" nillable="true" type="tns:LfTypesASM" />
+  <xs:complexType name="CompositeLoadOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OperDataSubLoads" nillable="true" type="tns:ArrayOfSubLoadOperData" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CompositeLoadOperData" nillable="true" type="tns:CompositeLoadOperData" />
+  <xs:complexType name="ArrayOfSubLoadOperData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubLoadOperData" nillable="true" type="tns:SubLoadOperData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubLoadOperData" nillable="true" type="tns:ArrayOfSubLoadOperData" />
+  <xs:complexType name="SubLoadOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ConnectionType" type="tns:ConnectionTypes" />
+          <xs:element minOccurs="0" name="CosPhi" type="xs:double" />
+          <xs:element minOccurs="0" name="DomesticUnits" type="xs:int" />
+          <xs:element minOccurs="0" name="E" type="xs:double" />
+          <xs:element minOccurs="0" name="I" type="xs:double" />
+          <xs:element minOccurs="0" name="IsVariable" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LFType" type="tns:LfTypesLoad" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="P" type="xs:double" />
+          <xs:element minOccurs="0" name="P0" type="xs:double" />
+          <xs:element minOccurs="0" name="PScaling" type="xs:double" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models" minOccurs="0" name="Phase" type="q3:phases_connect" />
+          <xs:element minOccurs="0" name="Q" type="xs:double" />
+          <xs:element minOccurs="0" name="Q0" type="xs:double" />
+          <xs:element minOccurs="0" name="QScaling" type="xs:double" />
+          <xs:element minOccurs="0" name="S" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SubLoadOperData" nillable="true" type="tns:SubLoadOperData" />
+  <xs:simpleType name="ConnectionTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WyeGnd" />
+      <xs:enumeration value="Delta" />
+      <xs:enumeration value="WyeIsolator" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ConnectionTypes" nillable="true" type="tns:ConnectionTypes" />
+  <xs:simpleType name="LfTypesLoad">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PQ" />
+      <xs:enumeration value="PC" />
+      <xs:enumeration value="IC" />
+      <xs:enumeration value="PI" />
+      <xs:enumeration value="SC" />
+      <xs:enumeration value="EC" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LfTypesLoad" nillable="true" type="tns:LfTypesLoad" />
+  <xs:complexType name="DCConverterOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ConverterFunction" type="tns:ConverterFunctionType" />
+          <xs:element minOccurs="0" name="I" type="xs:double" />
+          <xs:element minOccurs="0" name="P" type="xs:double" />
+          <xs:element minOccurs="0" name="Regulation" type="tns:ConverterControlTypes" />
+          <xs:element minOccurs="0" name="U" type="xs:double" />
+          <xs:element minOccurs="0" name="Umode" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DCConverterOperData" nillable="true" type="tns:DCConverterOperData" />
+  <xs:simpleType name="ConverterFunctionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Inverter" />
+      <xs:enumeration value="Rectifier" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ConverterFunctionType" nillable="true" type="tns:ConverterFunctionType" />
+  <xs:simpleType name="ConverterControlTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="P" />
+      <xs:enumeration value="I" />
+      <xs:enumeration value="AandU" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ConverterControlTypes" nillable="true" type="tns:ConverterControlTypes" />
+  <xs:complexType name="EnergyStorageOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CosPhi" type="xs:double" />
+          <xs:element minOccurs="0" name="I" type="xs:double" />
+          <xs:element minOccurs="0" name="IsCapacitive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsVariable" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LFType" type="tns:LfTypesEnergyStorage" />
+          <xs:element minOccurs="0" name="P" type="xs:double" />
+          <xs:element minOccurs="0" name="PScaling" type="xs:double" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models" minOccurs="0" name="Phase" type="q4:phases_connect" />
+          <xs:element minOccurs="0" name="Q" type="xs:double" />
+          <xs:element minOccurs="0" name="QScaling" type="xs:double" />
+          <xs:element minOccurs="0" name="S" type="xs:double" />
+          <xs:element minOccurs="0" name="SlackPortion" type="xs:double" />
+          <xs:element minOccurs="0" name="U" type="xs:double" />
+          <xs:element minOccurs="0" name="Uangle" type="xs:double" />
+          <xs:element minOccurs="0" name="Units" type="tns:UnitTypes" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EnergyStorageOperData" nillable="true" type="tns:EnergyStorageOperData" />
+  <xs:simpleType name="LfTypesEnergyStorage">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SL" />
+      <xs:enumeration value="PV" />
+      <xs:enumeration value="PQ" />
+      <xs:enumeration value="PC" />
+      <xs:enumeration value="IC" />
+      <xs:enumeration value="SC" />
+      <xs:enumeration value="cosfP" />
+      <xs:enumeration value="cosfU" />
+      <xs:enumeration value="QfU" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LfTypesEnergyStorage" nillable="true" type="tns:LfTypesEnergyStorage" />
+  <xs:complexType name="ExternalGridOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsVariable" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LFType" type="tns:LfTypesExternalGrid" />
+          <xs:element minOccurs="0" name="P" type="xs:double" />
+          <xs:element minOccurs="0" name="Q" type="xs:double" />
+          <xs:element minOccurs="0" name="SlackPortion" type="xs:double" />
+          <xs:element minOccurs="0" name="U" type="xs:double" />
+          <xs:element minOccurs="0" name="Uangle" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ExternalGridOperData" nillable="true" type="tns:ExternalGridOperData" />
+  <xs:simpleType name="LfTypesExternalGrid">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SL" />
+      <xs:enumeration value="PQ" />
+      <xs:enumeration value="PV" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LfTypesExternalGrid" nillable="true" type="tns:LfTypesExternalGrid" />
+  <xs:complexType name="LineOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OutsideTemperature" type="xs:double" />
+          <xs:element minOccurs="0" name="ShuntActive1" type="xs:double" />
+          <xs:element minOccurs="0" name="ShuntActive2" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LineOperData" nillable="true" type="tns:LineOperData" />
+  <xs:complexType name="LoadOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CosPhi" type="xs:double" />
+          <xs:element minOccurs="0" name="E" type="xs:double" />
+          <xs:element minOccurs="0" name="I" type="xs:double" />
+          <xs:element minOccurs="0" name="IsVariable" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LFType" type="tns:LfTypesLoad" />
+          <xs:element minOccurs="0" name="P" type="xs:double" />
+          <xs:element minOccurs="0" name="P0" type="xs:double" />
+          <xs:element minOccurs="0" name="PScaling" type="xs:double" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models" minOccurs="0" name="Phase" type="q5:phases_connect" />
+          <xs:element minOccurs="0" name="Q" type="xs:double" />
+          <xs:element minOccurs="0" name="Q0" type="xs:double" />
+          <xs:element minOccurs="0" name="QScaling" type="xs:double" />
+          <xs:element minOccurs="0" name="S" type="xs:double" />
+          <xs:element minOccurs="0" name="Un" type="xs:double" />
+          <xs:element minOccurs="0" name="Units" type="tns:UnitTypes" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LoadOperData" nillable="true" type="tns:LoadOperData" />
+  <xs:complexType name="PWMOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Control1" type="tns:PWMControlTypes" />
+          <xs:element minOccurs="0" name="Control2" type="tns:PWMControlTypes" />
+          <xs:element minOccurs="0" name="SetValue1" type="xs:double" />
+          <xs:element minOccurs="0" name="SetValue2" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PWMOperData" nillable="true" type="tns:PWMOperData" />
+  <xs:simpleType name="PWMControlTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Uac" />
+      <xs:enumeration value="Udc" />
+      <xs:enumeration value="P" />
+      <xs:enumeration value="Q" />
+      <xs:enumeration value="Md" />
+      <xs:enumeration value="Mq" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PWMControlTypes" nillable="true" type="tns:PWMControlTypes" />
+  <xs:complexType name="ShuntOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CosPhi" type="xs:double" />
+          <xs:element minOccurs="0" name="P" type="xs:double" />
+          <xs:element minOccurs="0" name="P0" type="xs:double" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models" minOccurs="0" name="Phase" type="q6:phases_connect" />
+          <xs:element minOccurs="0" name="Q" type="xs:double" />
+          <xs:element minOccurs="0" name="Q0" type="xs:double" />
+          <xs:element minOccurs="0" name="RegulationType" type="tns:ShuntRegulationTypes" />
+          <xs:element minOccurs="0" name="U" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ShuntOperData" nillable="true" type="tns:ShuntOperData" />
+  <xs:simpleType name="ShuntRegulationTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FixedAdmittance" />
+      <xs:enumeration value="SwitchedAdmittanceDiscrete" />
+      <xs:enumeration value="SwitchedAdmittanceContinuous" />
+      <xs:enumeration value="SwitchedAdmittanceFixed" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ShuntRegulationTypes" nillable="true" type="tns:ShuntRegulationTypes" />
+  <xs:complexType name="SynchronousMachineOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CosPhi" type="xs:double" />
+          <xs:element minOccurs="0" name="IsCapacitive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsVariable" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LFType" type="tns:LfTypesSM" />
+          <xs:element minOccurs="0" name="P" type="xs:double" />
+          <xs:element minOccurs="0" name="PScaling" type="xs:double" />
+          <xs:element minOccurs="0" name="Q" type="xs:double" />
+          <xs:element minOccurs="0" name="QPortion" type="xs:double" />
+          <xs:element minOccurs="0" name="QScaling" type="xs:double" />
+          <xs:element minOccurs="0" name="ScalingType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SlackPortion" type="xs:double" />
+          <xs:element minOccurs="0" name="U" type="xs:double" />
+          <xs:element minOccurs="0" name="Uangle" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SynchronousMachineOperData" nillable="true" type="tns:SynchronousMachineOperData" />
+  <xs:simpleType name="LfTypesSM">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PQ" />
+      <xs:enumeration value="PV" />
+      <xs:enumeration value="SL" />
+      <xs:enumeration value="PC" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LfTypesSM" nillable="true" type="tns:LfTypesSM" />
+  <xs:complexType name="PowerLineLoadOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:LoadOperData">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PowerLineLoadOperData" nillable="true" type="tns:PowerLineLoadOperData" />
+  <xs:complexType name="GWHDemandOperDataOfGFlowRateUnitswfbWOzol">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="GWHDemandOperDataOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="GFlowRateUnits" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="QDemand" type="xs:double" />
+          <xs:element minOccurs="0" name="QDemandUnits" type="tns:GFlowRateUnits" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GWHDemandOperDataOfGFlowRateUnitswfbWOzol" nillable="true" type="tns:GWHDemandOperDataOfGFlowRateUnitswfbWOzol" />
+  <xs:simpleType name="GFlowRateUnits">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NM3pH" />
+      <xs:enumeration value="kNM3pH" />
+      <xs:enumeration value="KWH" />
+      <xs:enumeration value="MWH" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GFlowRateUnits" nillable="true" type="tns:GFlowRateUnits" />
+  <xs:complexType name="GasPipeOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandOperDataOfGFlowRateUnitswfbWOzol">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GasPipeOperData" nillable="true" type="tns:GasPipeOperData" />
+  <xs:complexType name="WaterPipeOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandOperDataOfWFlowRateUnitswfbWOzol">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WaterPipeOperData" nillable="true" type="tns:WaterPipeOperData" />
+  <xs:complexType name="GWHDemandOperDataOfWFlowRateUnitswfbWOzol">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="GWHDemandOperDataOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="WFlowRateUnits" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="QDemand" type="xs:double" />
+          <xs:element minOccurs="0" name="QDemandUnits" type="tns:WFlowRateUnits" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GWHDemandOperDataOfWFlowRateUnitswfbWOzol" nillable="true" type="tns:GWHDemandOperDataOfWFlowRateUnitswfbWOzol" />
+  <xs:simpleType name="WFlowRateUnits">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LpSEC" />
+      <xs:enumeration value="LpMIN" />
+      <xs:enumeration value="M3pH" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WFlowRateUnits" nillable="true" type="tns:WFlowRateUnits" />
+  <xs:complexType name="HeatingPipeOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandOperDataOfHFlowRateUnitswfbWOzol">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HeatingPipeOperData" nillable="true" type="tns:HeatingPipeOperData" />
+  <xs:complexType name="GWHDemandOperDataOfHFlowRateUnitswfbWOzol">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="GWHDemandOperDataOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="HFlowRateUnits" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="QDemand" type="xs:double" />
+          <xs:element minOccurs="0" name="QDemandUnits" type="tns:HFlowRateUnits" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GWHDemandOperDataOfHFlowRateUnitswfbWOzol" nillable="true" type="tns:GWHDemandOperDataOfHFlowRateUnitswfbWOzol" />
+  <xs:simpleType name="HFlowRateUnits">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LpSEC" />
+      <xs:enumeration value="LpMIN" />
+      <xs:enumeration value="M3pH" />
+      <xs:enumeration value="TpH" />
+      <xs:enumeration value="KGpS" />
+      <xs:enumeration value="KW" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="HFlowRateUnits" nillable="true" type="tns:HFlowRateUnits" />
+  <xs:complexType name="GWHDemandExtendedOperDataOfGFlowRateUnitswfbWOzol">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="GWHDemandExtendedOperDataOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="GFlowRateUnits" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandOperDataOfGFlowRateUnitswfbWOzol">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="QDemandFactor" type="xs:double" />
+          <xs:element minOccurs="0" name="QDemandProfile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="QDemandProfileOn" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GWHDemandExtendedOperDataOfGFlowRateUnitswfbWOzol" nillable="true" type="tns:GWHDemandExtendedOperDataOfGFlowRateUnitswfbWOzol" />
+  <xs:complexType name="GasNodeOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfGFlowRateUnitswfbWOzol">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FixedPressure" type="xs:double" />
+          <xs:element minOccurs="0" name="FixedPressureUnits" type="tns:GPressureUnits" />
+          <xs:element minOccurs="0" name="OperDataGasConsumers" nillable="true" type="tns:ArrayOfGasConsumerOperData" />
+          <xs:element minOccurs="0" name="QDemandMax" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GasNodeOperData" nillable="true" type="tns:GasNodeOperData" />
+  <xs:simpleType name="GPressureUnits">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MBAR" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GPressureUnits" nillable="true" type="tns:GPressureUnits" />
+  <xs:complexType name="ArrayOfGasConsumerOperData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GasConsumerOperData" nillable="true" type="tns:GasConsumerOperData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGasConsumerOperData" nillable="true" type="tns:ArrayOfGasConsumerOperData" />
+  <xs:complexType name="GasConsumerOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfGFlowRateUnitswfbWOzol">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsConnected" type="xs:boolean" />
+          <xs:element minOccurs="0" name="QDemandMax" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GasConsumerOperData" nillable="true" type="tns:GasConsumerOperData" />
+  <xs:complexType name="GasSpecialLoadOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfGFlowRateUnitswfbWOzol">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GasSpecialLoadOperData" nillable="true" type="tns:GasSpecialLoadOperData" />
+  <xs:complexType name="GasLineLoadOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfGFlowRateUnitswfbWOzol">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GasLineLoadOperData" nillable="true" type="tns:GasLineLoadOperData" />
+  <xs:complexType name="WaterNodeOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfWFlowRateUnitswfbWOzol">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FixedPressure" type="xs:double" />
+          <xs:element minOccurs="0" name="FixedPressureUnits" type="tns:WPressureUnits" />
+          <xs:element minOccurs="0" name="OperDataWaterConsumers" nillable="true" type="tns:ArrayOfWaterConsumerOperData" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WaterNodeOperData" nillable="true" type="tns:WaterNodeOperData" />
+  <xs:complexType name="GWHDemandExtendedOperDataOfWFlowRateUnitswfbWOzol">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="GWHDemandExtendedOperDataOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="WFlowRateUnits" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandOperDataOfWFlowRateUnitswfbWOzol">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="QDemandFactor" type="xs:double" />
+          <xs:element minOccurs="0" name="QDemandProfile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="QDemandProfileOn" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GWHDemandExtendedOperDataOfWFlowRateUnitswfbWOzol" nillable="true" type="tns:GWHDemandExtendedOperDataOfWFlowRateUnitswfbWOzol" />
+  <xs:complexType name="WaterConsumerOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfWFlowRateUnitswfbWOzol">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsConnected" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WaterConsumerOperData" nillable="true" type="tns:WaterConsumerOperData" />
+  <xs:complexType name="WaterSpecialLoadOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfWFlowRateUnitswfbWOzol">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WaterSpecialLoadOperData" nillable="true" type="tns:WaterSpecialLoadOperData" />
+  <xs:complexType name="WaterLineLoadOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfWFlowRateUnitswfbWOzol">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WaterLineLoadOperData" nillable="true" type="tns:WaterLineLoadOperData" />
+  <xs:complexType name="HeatingNodeOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfHFlowRateUnitswfbWOzol">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FixedPressure" type="xs:double" />
+          <xs:element minOccurs="0" name="FixedPressureUnits" type="tns:HPressureUnits" />
+          <xs:element minOccurs="0" name="OperDataHeatConsumers" nillable="true" type="tns:ArrayOfHeatingConsumerOperData" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HeatingNodeOperData" nillable="true" type="tns:HeatingNodeOperData" />
+  <xs:complexType name="GWHDemandExtendedOperDataOfHFlowRateUnitswfbWOzol">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="GWHDemandExtendedOperDataOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="HFlowRateUnits" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandOperDataOfHFlowRateUnitswfbWOzol">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="QDemandFactor" type="xs:double" />
+          <xs:element minOccurs="0" name="QDemandProfile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="QDemandProfileOn" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GWHDemandExtendedOperDataOfHFlowRateUnitswfbWOzol" nillable="true" type="tns:GWHDemandExtendedOperDataOfHFlowRateUnitswfbWOzol" />
+  <xs:complexType name="HeatingConsumerOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfHFlowRateUnitswfbWOzol">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsConnected" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HeatingConsumerOperData" nillable="true" type="tns:HeatingConsumerOperData" />
+  <xs:complexType name="HeatingSpecialLoadOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfHFlowRateUnitswfbWOzol">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HeatingSpecialLoadOperData" nillable="true" type="tns:HeatingSpecialLoadOperData" />
+  <xs:complexType name="HeatingLineLoadOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfHFlowRateUnitswfbWOzol">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HeatingLineLoadOperData" nillable="true" type="tns:HeatingLineLoadOperData" />
+  <xs:complexType name="HeatingLoadOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHDemandExtendedOperDataOfHFlowRateUnitswfbWOzol">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CalculationType" type="tns:HeatExchangerModel" />
+          <xs:element minOccurs="0" name="DeltaTemperature" type="xs:double" />
+          <xs:element minOccurs="0" name="OperDataHeatConsumers" nillable="true" type="tns:ArrayOfHeatingConsumerOperData" />
+          <xs:element minOccurs="0" name="OutletTemperature" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HeatingLoadOperData" nillable="true" type="tns:HeatingLoadOperData" />
+  <xs:simpleType name="HeatExchangerModel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FixedOutletTemperature" />
+      <xs:enumeration value="FixedDeltaTemperature" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="HeatExchangerModel" nillable="true" type="tns:HeatExchangerModel" />
+  <xs:complexType name="ArrayOfHeatingConsumerOperData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HeatingConsumerOperData" nillable="true" type="tns:HeatingConsumerOperData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHeatingConsumerOperData" nillable="true" type="tns:ArrayOfHeatingConsumerOperData" />
+  <xs:complexType name="GWHRegulatorOperDataOfGPressureUnitsGFlowRateUnitsQVqQsqH_P">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="GWHRegulatorOperDataOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="GPressureUnits" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+          <GenericParameter Name="GFlowRateUnits" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RegulatedFlowRate" type="xs:double" />
+          <xs:element minOccurs="0" name="RegulatedFlowRateUnits" type="tns:GFlowRateUnits" />
+          <xs:element minOccurs="0" name="RegulatedPressure" type="xs:double" />
+          <xs:element minOccurs="0" name="RegulatedPressureUnits" type="tns:GPressureUnits" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GWHRegulatorOperDataOfGPressureUnitsGFlowRateUnitsQVqQsqH_P" nillable="true" type="tns:GWHRegulatorOperDataOfGPressureUnitsGFlowRateUnitsQVqQsqH_P" />
+  <xs:complexType name="GasValveOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHRegulatorOperDataOfGPressureUnitsGFlowRateUnitsQVqQsqH_P">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsNegativeFlowBlocked" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsRegulationActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RegulationType" type="tns:GasRegulationTypes" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GasValveOperData" nillable="true" type="tns:GasValveOperData" />
+  <xs:simpleType name="GasRegulationTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FixedOutletPressure" />
+      <xs:enumeration value="CharacteristicCurve" />
+      <xs:enumeration value="FixedInletPressure" />
+      <xs:enumeration value="FixedFlowRate" />
+      <xs:enumeration value="FixedDeltaPressure" />
+      <xs:enumeration value="FixedPressureRatio" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GasRegulationTypes" nillable="true" type="tns:GasRegulationTypes" />
+  <xs:complexType name="GasPressureRegulatorOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHRegulatorOperDataOfGPressureUnitsGFlowRateUnitsQVqQsqH_P">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CalorificValue" type="xs:double" />
+          <xs:element minOccurs="0" name="IsNegativeFlowBlocked" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsPressureConstant" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsQMaxChecked" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsQMaxEnforced" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SpecificGravity" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GasPressureRegulatorOperData" nillable="true" type="tns:GasPressureRegulatorOperData" />
+  <xs:complexType name="GasCirculationPumpOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHRegulatorOperDataOfGPressureUnitsGFlowRateUnitsQVqQsqH_P">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RegulationType" type="tns:RegulationTypes" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GasCirculationPumpOperData" nillable="true" type="tns:GasCirculationPumpOperData" />
+  <xs:simpleType name="RegulationTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FixedOutletPressure" />
+      <xs:enumeration value="CharacteristicCurve" />
+      <xs:enumeration value="FixedInletPressure" />
+      <xs:enumeration value="FixedFlowRate" />
+      <xs:enumeration value="FixedDeltaPressure" />
+      <xs:enumeration value="FixedPressureRatio" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RegulationTypes" nillable="true" type="tns:RegulationTypes" />
+  <xs:complexType name="WaterValveOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHRegulatorOperDataOfWPressureUnitsWFlowRateUnitsQVqQsqH_P">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsNegativeFlowBlocked" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsRegulationActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RegulationType" type="tns:RegulationTypes" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WaterValveOperData" nillable="true" type="tns:WaterValveOperData" />
+  <xs:complexType name="GWHRegulatorOperDataOfWPressureUnitsWFlowRateUnitsQVqQsqH_P">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="GWHRegulatorOperDataOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="WPressureUnits" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+          <GenericParameter Name="WFlowRateUnits" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RegulatedFlowRate" type="xs:double" />
+          <xs:element minOccurs="0" name="RegulatedFlowRateUnits" type="tns:WFlowRateUnits" />
+          <xs:element minOccurs="0" name="RegulatedPressure" type="xs:double" />
+          <xs:element minOccurs="0" name="RegulatedPressureUnits" type="tns:WPressureUnits" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GWHRegulatorOperDataOfWPressureUnitsWFlowRateUnitsQVqQsqH_P" nillable="true" type="tns:GWHRegulatorOperDataOfWPressureUnitsWFlowRateUnitsQVqQsqH_P" />
+  <xs:simpleType name="WPressureUnits">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="M" />
+      <xs:enumeration value="BAR" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WPressureUnits" nillable="true" type="tns:WPressureUnits" />
+  <xs:complexType name="WaterReservoirOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHRegulatorOperDataOfWPressureUnitsWFlowRateUnitsQVqQsqH_P">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsNegativeFlowBlocked" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsPressureConstant" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsQMaxChecked" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsQMaxEnforced" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WaterReservoirOperData" nillable="true" type="tns:WaterReservoirOperData" />
+  <xs:complexType name="WaterCirculationPumpOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHRegulatorOperDataOfWPressureUnitsWFlowRateUnitsQVqQsqH_P">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RegulationType" type="tns:RegulationTypes" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WaterCirculationPumpOperData" nillable="true" type="tns:WaterCirculationPumpOperData" />
+  <xs:complexType name="HeatingValveOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHRegulatorOperDataOfHPressureUnitsHFlowRateUnitsQVqQsqH_P">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsNegativeFlowBlocked" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsRegulationActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RegulationType" type="tns:HeatingRegulationTypes" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HeatingValveOperData" nillable="true" type="tns:HeatingValveOperData" />
+  <xs:complexType name="GWHRegulatorOperDataOfHPressureUnitsHFlowRateUnitsQVqQsqH_P">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="GWHRegulatorOperDataOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="HPressureUnits" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+          <GenericParameter Name="HFlowRateUnits" Namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RegulatedFlowRate" type="xs:double" />
+          <xs:element minOccurs="0" name="RegulatedFlowRateUnits" type="tns:HFlowRateUnits" />
+          <xs:element minOccurs="0" name="RegulatedPressure" type="xs:double" />
+          <xs:element minOccurs="0" name="RegulatedPressureUnits" type="tns:HPressureUnits" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GWHRegulatorOperDataOfHPressureUnitsHFlowRateUnitsQVqQsqH_P" nillable="true" type="tns:GWHRegulatorOperDataOfHPressureUnitsHFlowRateUnitsQVqQsqH_P" />
+  <xs:simpleType name="HPressureUnits">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BAR" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="HPressureUnits" nillable="true" type="tns:HPressureUnits" />
+  <xs:complexType name="HeatingPressureRegulatorOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHRegulatorOperDataOfHPressureUnitsHFlowRateUnitsQVqQsqH_P">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsNegativeFlowBlocked" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsPressureConstant" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsQMaxChecked" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsQMaxEnforced" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HeatingPressureRegulatorOperData" nillable="true" type="tns:HeatingPressureRegulatorOperData" />
+  <xs:complexType name="HeatingCirculationPumpOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GWHRegulatorOperDataOfHPressureUnitsHFlowRateUnitsQVqQsqH_P">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RegulationType" type="tns:RegulationTypes" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HeatingCirculationPumpOperData" nillable="true" type="tns:HeatingCirculationPumpOperData" />
+  <xs:complexType name="WaterHydrantOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="HydrantFlowRate" type="xs:double" />
+          <xs:element minOccurs="0" name="HydrantFlowRateUnits" type="tns:WFlowRateUnits" />
+          <xs:element minOccurs="0" name="HydrantPressure" type="xs:double" />
+          <xs:element minOccurs="0" name="HydrantPressureUnits" type="tns:WPressureUnits" />
+          <xs:element minOccurs="0" name="HydrantType" type="tns:WaterHydrantType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WaterHydrantOperData" nillable="true" type="tns:WaterHydrantOperData" />
+  <xs:simpleType name="WaterHydrantType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Inactive" />
+      <xs:enumeration value="ConstantFlowRate" />
+      <xs:enumeration value="ConstantPressure" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WaterHydrantType" nillable="true" type="tns:WaterHydrantType" />
+  <xs:complexType name="HeatingPlantOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FixedHeatingSupply" type="xs:double" />
+          <xs:element minOccurs="0" name="FixedMassFlowRate" type="xs:double" />
+          <xs:element minOccurs="0" name="FixedReturnPressure" type="xs:double" />
+          <xs:element minOccurs="0" name="FixedSupplyPressure" type="xs:double" />
+          <xs:element minOccurs="0" name="MeanPressure" type="xs:double" />
+          <xs:element minOccurs="0" name="PressureDrop" type="xs:double" />
+          <xs:element minOccurs="0" name="PressureModel" type="tns:HeatPlantPressureRegulation" />
+          <xs:element minOccurs="0" name="ProductionModel" type="tns:HeatPlantProduction" />
+          <xs:element minOccurs="0" name="SupplyPortion" type="xs:double" />
+          <xs:element minOccurs="0" name="SupplyTemperature" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HeatingPlantOperData" nillable="true" type="tns:HeatingPlantOperData" />
+  <xs:simpleType name="HeatPlantPressureRegulation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Fitting" />
+      <xs:enumeration value="MeanRegulation" />
+      <xs:enumeration value="FixedRegulation" />
+      <xs:enumeration value="Inactive" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="HeatPlantPressureRegulation" nillable="true" type="tns:HeatPlantPressureRegulation" />
+  <xs:simpleType name="HeatPlantProduction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ConstantT" />
+      <xs:enumeration value="ConstantPowerTunknown" />
+      <xs:enumeration value="ConstantMassFlow" />
+      <xs:enumeration value="ConstantPower" />
+      <xs:enumeration value="NoPower" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="HeatPlantProduction" nillable="true" type="tns:HeatPlantProduction" />
+  <xs:complexType name="NetworkGroupOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GWHAirTemperature" type="xs:double" />
+          <xs:element minOccurs="0" name="GWHExternalTemperature" type="xs:double" />
+          <xs:element minOccurs="0" name="GWHLoad" type="xs:double" />
+          <xs:element minOccurs="0" name="GWHSpecialLoad" type="xs:double" />
+          <xs:element minOccurs="0" name="NetworkGroupType" type="tns:NetworkGroupTypes" />
+          <xs:element minOccurs="0" name="Pgen" type="xs:double" />
+          <xs:element minOccurs="0" name="Pload" type="xs:double" />
+          <xs:element minOccurs="0" name="Qcap" type="xs:double" />
+          <xs:element minOccurs="0" name="Qgen" type="xs:double" />
+          <xs:element minOccurs="0" name="Qind" type="xs:double" />
+          <xs:element minOccurs="0" name="Qload" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetworkGroupOperData" nillable="true" type="tns:NetworkGroupOperData" />
+  <xs:simpleType name="NetworkGroupTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Zone" />
+      <xs:enumeration value="Feeder" />
+      <xs:enumeration value="Network" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="NetworkGroupTypes" nillable="true" type="tns:NetworkGroupTypes" />
+  <xs:complexType name="NetworkOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:NetworkGroupOperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CustomerTypes" nillable="true" type="tns:ArrayOfCustomerTypeOperData" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetworkOperData" nillable="true" type="tns:NetworkOperData" />
+  <xs:complexType name="ArrayOfCustomerTypeOperData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerTypeOperData" nillable="true" type="tns:CustomerTypeOperData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerTypeOperData" nillable="true" type="tns:ArrayOfCustomerTypeOperData" />
+  <xs:complexType name="CustomerTypeOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="GWHFactor" type="xs:double" />
+          <xs:element minOccurs="0" name="PFactor" type="xs:double" />
+          <xs:element minOccurs="0" name="QFactor" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CustomerTypeOperData" nillable="true" type="tns:CustomerTypeOperData" />
+  <xs:complexType name="FeederOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:NetworkGroupOperData">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FeederOperData" nillable="true" type="tns:FeederOperData" />
+  <xs:complexType name="ZoneOperData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:NetworkGroupOperData">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ZoneOperData" nillable="true" type="tns:ZoneOperData" />
+  <xs:simpleType name="HeatingRegulationTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FixedOutletPressure" />
+      <xs:enumeration value="CharacteristicCurve" />
+      <xs:enumeration value="FixedInletPressure" />
+      <xs:enumeration value="FixedFlowRate" />
+      <xs:enumeration value="FixedDeltaPressure" />
+      <xs:enumeration value="FixedPressureRatio" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="HeatingRegulationTypes" nillable="true" type="tns:HeatingRegulationTypes" />
+  <xs:complexType name="ArrayOfWaterConsumerOperData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WaterConsumerOperData" nillable="true" type="tns:WaterConsumerOperData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWaterConsumerOperData" nillable="true" type="tns:ArrayOfWaterConsumerOperData" />
+</xs:schema>

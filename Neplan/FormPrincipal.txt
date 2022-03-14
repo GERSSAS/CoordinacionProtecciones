@@ -1,0 +1,113 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Diagnostics;
+
+namespace Neplan
+{
+    public partial class FormPrincipal : Form
+    {
+        public FormPrincipal()
+        {
+            InitializeComponent();
+            AbrirForm<FormCoordinacionProtecciones>();
+        }
+        public void BloquearForm<MiForm>() where MiForm : Form
+        {
+            Form formulario;
+            formulario = panelForms.Controls.OfType<MiForm>().FirstOrDefault();
+
+            if (formulario != null)
+            {
+                formulario.Enabled = false;
+            }
+        }
+        public void DesBloquearForm<MiForm>() where MiForm : Form
+        {
+            Form formulario;
+            formulario = panelForms.Controls.OfType<MiForm>().FirstOrDefault();
+
+            if (formulario != null)
+            {
+                formulario.Enabled = true;
+            }
+        }
+        public void AbrirForm<MiForm>() where MiForm : Form, new()
+        {
+            Form formulario;
+            formulario = panelForms.Controls.OfType<MiForm>().FirstOrDefault();
+
+            if (formulario == null)
+            {
+                formulario = new MiForm();
+                formulario.TopLevel = false;
+                formulario.FormBorderStyle = FormBorderStyle.None;
+                formulario.Dock = DockStyle.Fill;
+                panelForms.Controls.Add(formulario);
+                panelForms.Tag = formulario;
+                formulario.Show();
+                formulario.BringToFront();
+
+            }
+            else
+            {
+                formulario.BringToFront();
+            }
+        }
+
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+        }
+        int lx, ly, sw, sh;
+
+        #region Funcionalidades del formulario
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AbrirForm<FormCoordinacionProtecciones>();
+            MessageBox.Show("se abre la coordinación de protecciones");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelForms_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Process[] processRunning = System.Diagnostics.Process.GetProcesses();
+            foreach (Process pr in processRunning)
+            {
+                if (pr.ProcessName == "EXCEL")
+                {
+                    pr.Kill();
+                }
+            }
+        }
+
+        private void BtnMin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+        #endregion
+    }

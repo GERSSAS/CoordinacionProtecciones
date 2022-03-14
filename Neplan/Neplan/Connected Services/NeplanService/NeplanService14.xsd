@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services.ServiceManager" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services.ServiceManager" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.TechData" />
+  <xs:complexType name="ArrayOfTimeDependentPointItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TimeDependentPointItem" nillable="true" type="tns:TimeDependentPointItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTimeDependentPointItem" nillable="true" type="tns:ArrayOfTimeDependentPointItem" />
+  <xs:complexType name="TimeDependentPointItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Attributes" nillable="true" type="tns:ArrayOfTimeDependentPoint" />
+      <xs:element minOccurs="0" name="ElementID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TimeDependentPointItem" nillable="true" type="tns:TimeDependentPointItem" />
+  <xs:complexType name="ArrayOfTimeDependentPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TimeDependentPoint" nillable="true" type="tns:TimeDependentPoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTimeDependentPoint" nillable="true" type="tns:ArrayOfTimeDependentPoint" />
+  <xs:complexType name="TimeDependentPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="attributeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isAbsoluteUnitValue" type="xs:boolean" />
+      <xs:element minOccurs="0" name="scenarioTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="value" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TimeDependentPoint" nillable="true" type="tns:TimeDependentPoint" />
+  <xs:complexType name="ArrayOfTechDataCalcSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TechDataCalcSetting" nillable="true" type="tns:TechDataCalcSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTechDataCalcSetting" nillable="true" type="tns:ArrayOfTechDataCalcSetting" />
+  <xs:complexType name="TechDataCalcSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContingencyLimit" nillable="true" type="tns:Limits" />
+      <xs:element minOccurs="0" name="ElementID" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsSelected" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NTCLimit" nillable="true" type="tns:Limits" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TechDataCalcSetting" nillable="true" type="tns:TechDataCalcSetting" />
+  <xs:complexType name="Limits">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Limit" type="xs:double" />
+      <xs:element minOccurs="0" name="Umax" type="xs:double" />
+      <xs:element minOccurs="0" name="Umin" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Limits" nillable="true" type="tns:Limits" />
+  <xs:complexType name="ArrayOfShortCircuitLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ShortCircuitLocation" nillable="true" type="tns:ShortCircuitLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfShortCircuitLocation" nillable="true" type="tns:ArrayOfShortCircuitLocation" />
+  <xs:complexType name="ShortCircuitLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ElementID" type="ser:guid" />
+      <xs:element minOccurs="0" name="FaultType" type="tns:FaultType" />
+      <xs:element minOccurs="0" name="IsFaultLocation" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TypeIEC" type="tns:TypeIEC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShortCircuitLocation" nillable="true" type="tns:ShortCircuitLocation" />
+  <xs:simpleType name="FaultType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Automatic" />
+      <xs:enumeration value="GenNear" />
+      <xs:enumeration value="GenFar" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FaultType" nillable="true" type="tns:FaultType" />
+  <xs:simpleType name="TypeIEC">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Automatic" />
+      <xs:enumeration value="Meshed" />
+      <xs:enumeration value="NonMeshed" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TypeIEC" nillable="true" type="tns:TypeIEC" />
+  <xs:complexType name="ShortCircuitLineLocation">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ShortCircuitLocation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Distance" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ShortCircuitLineLocation" nillable="true" type="tns:ShortCircuitLineLocation" />
+  <xs:complexType name="ArrayOfCommonModeItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CommonModeItem" nillable="true" type="tns:CommonModeItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCommonModeItem" nillable="true" type="tns:ArrayOfCommonModeItem" />
+  <xs:complexType name="CommonModeItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommonModeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectedElements" nillable="true" type="q1:ArrayOfguid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonModeItem" nillable="true" type="tns:CommonModeItem" />
+  <xs:complexType name="UpdateLibraryElement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ElementID" type="ser:guid" />
+      <xs:element minOccurs="0" name="LibraryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LibrarySubName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LibraryType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateLibraryElement" nillable="true" type="tns:UpdateLibraryElement" />
+  <xs:complexType name="ArrayOfUpdateLibraryElement">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UpdateLibraryElement" nillable="true" type="tns:UpdateLibraryElement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUpdateLibraryElement" nillable="true" type="tns:ArrayOfUpdateLibraryElement" />
+  <xs:complexType name="ArrayOfGraphicLayerPropertiesItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GraphicLayerPropertiesItem" nillable="true" type="tns:GraphicLayerPropertiesItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGraphicLayerPropertiesItem" nillable="true" type="tns:ArrayOfGraphicLayerPropertiesItem" />
+  <xs:complexType name="GraphicLayerPropertiesItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllowSelection" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AllowSizeChange" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsActiveForColoring" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsFreezed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsHidden" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LayerColor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LayerName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GraphicLayerPropertiesItem" nillable="true" type="tns:GraphicLayerPropertiesItem" />
+  <xs:complexType name="ArrayOfAttributeItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AttributeItem" nillable="true" type="tns:AttributeItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAttributeItem" nillable="true" type="tns:ArrayOfAttributeItem" />
+  <xs:complexType name="AttributeItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttributeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttributeItem" nillable="true" type="tns:AttributeItem" />
+  <xs:complexType name="BoolAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BoolAttribute" nillable="true" type="tns:BoolAttribute" />
+  <xs:complexType name="StringAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StringAttribute" nillable="true" type="tns:StringAttribute" />
+  <xs:complexType name="IntegerAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntegerAttribute" nillable="true" type="tns:IntegerAttribute" />
+  <xs:complexType name="DoubleAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DoubleAttribute" nillable="true" type="tns:DoubleAttribute" />
+  <xs:complexType name="DateTimeAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DateTimeAttribute" nillable="true" type="tns:DateTimeAttribute" />
+  <xs:complexType name="GuidAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GuidAttribute" nillable="true" type="tns:GuidAttribute" />
+  <xs:complexType name="DoubleListAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeItem">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Items" nillable="true" type="q2:ArrayOfdouble" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DoubleListAttribute" nillable="true" type="tns:DoubleListAttribute" />
+  <xs:complexType name="IntegerListAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeItem">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Items" nillable="true" type="q3:ArrayOfint" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntegerListAttribute" nillable="true" type="tns:IntegerListAttribute" />
+  <xs:complexType name="StringListAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeItem">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Items" nillable="true" type="q4:ArrayOfstring" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StringListAttribute" nillable="true" type="tns:StringListAttribute" />
+  <xs:complexType name="GuidListAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeItem">
+        <xs:sequence>
+          <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Items" nillable="true" type="q5:ArrayOfguid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GuidListAttribute" nillable="true" type="tns:GuidListAttribute" />
+  <xs:complexType name="ComplexListAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfListItem" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ComplexListAttribute" nillable="true" type="tns:ComplexListAttribute" />
+  <xs:complexType name="ArrayOfListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ListItem" nillable="true" type="tns:ListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfListItem" nillable="true" type="tns:ArrayOfListItem" />
+  <xs:complexType name="ListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Attributes" nillable="true" type="tns:ArrayOfAttributeItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListItem" nillable="true" type="tns:ListItem" />
+  <xs:complexType name="ArrayOfInterfaceOPFSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InterfaceOPFSetting" nillable="true" type="tns:InterfaceOPFSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInterfaceOPFSetting" nillable="true" type="tns:ArrayOfInterfaceOPFSetting" />
+  <xs:complexType name="InterfaceOPFSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="InterfaceConnectionList" nillable="true" type="tns:ArrayOfInterfaceConnectionItem" />
+      <xs:element minOccurs="0" name="InterfaceName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InterfaceOPFSetting" nillable="true" type="tns:InterfaceOPFSetting" />
+  <xs:complexType name="ArrayOfInterfaceConnectionItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InterfaceConnectionItem" nillable="true" type="tns:InterfaceConnectionItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInterfaceConnectionItem" nillable="true" type="tns:ArrayOfInterfaceConnectionItem" />
+  <xs:complexType name="InterfaceConnectionItem">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.TechData" base="q6:NotifyBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ElementID" type="ser:guid" />
+          <xs:element minOccurs="0" name="ElementType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PortNumber" type="xs:short" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="InterfaceConnectionItem" nillable="true" type="tns:InterfaceConnectionItem" />
+  <xs:complexType name="ArrayOfTechItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TechItem" nillable="true" type="tns:TechItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTechItem" nillable="true" type="tns:ArrayOfTechItem" />
+  <xs:complexType name="TechItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Attributes" nillable="true" type="tns:ArrayOfAttributeItem" />
+      <xs:element minOccurs="0" name="ElementID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TechItem" nillable="true" type="tns:TechItem" />
+</xs:schema>

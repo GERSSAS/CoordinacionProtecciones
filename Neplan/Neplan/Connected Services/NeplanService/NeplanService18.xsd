@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="NeplanDomainService.ImportReturnInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreationTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileStream" nillable="true" type="tns:NeplanDomainService.FileAsByte" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="LogInfo" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ReturnValue" type="xs:int" />
+      <xs:element minOccurs="0" name="ScenarioTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="actualCreatedProjectID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="actualCreatedProjectName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="dictFileNamesToFileIDs" nillable="true" type="q2:ArrayOfKeyValueOfstringstring" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="dictMAStoFileName" nillable="true" type="q3:ArrayOfKeyValueOfstringstring" />
+      <xs:element minOccurs="0" name="variantID" nillable="true" type="xs:string" />
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="wrongTPNodes" nillable="true" type="q4:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NeplanDomainService.ImportReturnInfo" nillable="true" type="tns:NeplanDomainService.ImportReturnInfo" />
+  <xs:complexType name="NeplanDomainService.FileAsByte">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="data" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="logData" nillable="true" type="q5:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NeplanDomainService.FileAsByte" nillable="true" type="tns:NeplanDomainService.FileAsByte" />
+</xs:schema>

@@ -1,0 +1,659 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Neplan.NeplanService;
+using System.Xml;
+using _Excel = Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.Excel;
+using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Threading;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Globalization;
+using System.Net;
+
+namespace Neplan
+{
+    public partial class FormCoordinacionProtecciones : Form
+    {
+        public FormCoordinacionProtecciones()
+        {
+            InitializeComponent();
+        }
+
+        #region Variables Gloabales
+
+        Webservice webservice = new Webservice();
+        ExternalProject proyecto = new ExternalProject();
+        ExternalProject proyectoVariante = new ExternalProject();
+        NeplanServiceClient nepService = FormLogin.nepService;
+        Dictionary<string, string> elementNames = new Dictionary<string, string>();
+        Dictionary<string, string> elementTypes = new Dictionary<string, string>();
+        Dictionary<string, string> lineaNames = new Dictionary<string, string>();//En este diccionario se guardará la información relacionada con los nombres de las lines del proyecto
+        Dictionary<string, string> lineaTypes = new Dictionary<string, string>();//En este diccionario se guardará la información relacionada con el tipo de las lines del proyecto
+        Dictionary<string, string> trans2DNames = new Dictionary<string, string>();//En este diccionario se guardará la información relacionada con los nombres de los transformadores de 2 devanados del proyecto
+        Dictionary<string, string> trans2DTypes = new Dictionary<string, string>();//En este diccionario se guardará la información relacionada con el tipo de los transformadores de 2 devanados del proyecto
+        Dictionary<string, string> trans3DNames = new Dictionary<string, string>();//En este diccionario se guardará la información relacionada con los nombres de los transformadores de 3 devanados del proyecto
+        Dictionary<string, string> trans3DTypes = new Dictionary<string, string>();//En este diccionario se guardará la información relacionada con el tipo de los transformadores de 3 devanados del proyecto
+
+        Dictionary<string, string> attributeName2Value = new Dictionary<string, string>();
+        Dictionary<string, int> listadeNodos = new Dictionary<string, int>();
+        Dictionary<string, int> listadeNodosBifasica = new Dictionary<string, int>();
+        Dictionary<string, int> listadeNodosBifasicaTierra = new Dictionary<string, int>();
+        public static bool analisisEnCurso = false;
+        //NeplanServiceElementResult[] elementResults;
+        List<string> nomElementSel = new List<string>();
+        List<string> typeElementSel = new List<string>();
+
+        //IEnumerable<AttributeItem> atributosCorto;
+        //string metodoDeCalculo;
+        //Worksheet excelWorksheet;
+        List<string> listaVariantes = new List<string>();
+        public static Dictionary<string, Dictionary<string, Dictionary<string, string>>> VarianteConAlternativas = new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
+        public Dictionary<string, Dictionary<string, string>> alternativas = new Dictionary<string, Dictionary<string, string>>();
+        Microsoft.Office.Interop.Excel.Range rangoPerdidas;
+        IEnumerable<ShortCircuitLocation> ubucacioncorto;
+
+        List<string> NombreElementoR = new List<string>();
+        List<string> TipoElementoR = new List<string>();
+        List<string> Puerto0ElementoR = new List<string>();
+        List<string> Puerto1ElementoR = new List<string>();
+        List<string> tipoDeFallaEnCorto = new List<string>();
+        List<double> distanciadeFallo = new List<double>();
+        List<string> impedanciaDeCorto = new List<string>();
+
+
+        bool operacion = true;
+        public int ConteoResultado = 5;//aqui empieza a cargarse el numero de la fila  para cargar el archivo
+        string Tipo_Elemento = "";   // Variable donde se va guardar el resultado para exportarlo a Excel
+        string Tipo_Falla = "";  // Variable donde se va guardar el resultado para exportarlo a Excel
+        #endregion
+
+
+        private void label1_Click(object sender, EventArgs e) { }
+        private void label2_Click(object sender, EventArgs e) { }
+        private void label3_Click(object sender, EventArgs e) { }
+        private void FormCoordinacionProtecciones_Load(object sender, EventArgs e) { }
+
+        #region cargar proyecto y elementos
+        private void button1_Click(object sender, EventArgs e)
+        {
+            /* incia servicio de Neplan*/
+            var neplan = webservice.nepService;
+            /* valida que el campo donde va el nombre no este vacio */
+
+            if (txtProyecto.Text == "")
+            {
+                MessageBox.Show("Por favor ingrese el nombre del proyecto");
+                txtProyecto.Focus();
+                return;
+            }
+            else //si el objeto proyecto de Neplan, no esta vacio, el nombre del proyecto no esta vacio, muestra mensaje para volver a obtener mensaje
+            {
+                if (proyecto != null && proyecto.ProjectName != null)
+                {
+                    StringComparer compararNombres = StringComparer.OrdinalIgnoreCase;
+                    /* si el nombre del proyecto es diferente a el de la caja de texto, y el nombre del proyecto es diferente de nulo, muestra mensaje para que se limpien los campos */
+                    if (compararNombres.Compare(proyecto.ProjectName, txtProyecto.Text) == 0)
+                    {
+                        MessageBox.Show("El proyecto ya ha sido Obtenido, click en limpiar para obtener de nuevo el proyecto");
+                        txtProyecto.Focus();
+                        return;
+                    }
+                    if (compararNombres.Compare(proyecto.ProjectName, txtProyecto.Text) != 0 && proyecto.ProjectName != null)
+                    {
+                        MessageBox.Show("Presione click en el botom limpiar para obtener un nuevo proyecto");
+                        txtProyecto.Focus();
+                        return;
+                    }
+                }
+                else // si el objeto proyecto de Neplan esta vacio, ejecuta la funcion GetProject con el nombre ingresado por el usuario
+                {
+                    proyecto = neplan.GetProject(txtProyecto.Text, null, null, null);
+                    if (proyecto == null)// si el servidor devuelve null, significa que no existe el proyecto en la base de datos
+                    {
+                        MessageBox.Show("El nombre del proyecto no se encuentra en la base de datos");
+                        txtProyecto.Focus();
+                        return;
+                    }
+                    else//Entonces si existe el proyecto, obtengo todos nombres y tipos de todos los elementos
+                    {
+                        MessageBox.Show("el proyecto " + txtProyecto.Text + " fue cargado con exito");
+                        /*añade opcion de Default a la lista de estados operacionales y seleciona la opcion en la caja de lista*/
+                        neplan.GetAllElementsOfProject(proyecto, ref elementNames, ref elementTypes);// Obtengo elementos
+
+                        /* Obtengo los estados operacionales del proyecto y los despliego en el combo box que contiene los elementos en falla*/
+                        int contEleNam = 0;
+                        int contEleTyp = 0;
+
+                        foreach (var item in elementNames)
+                        {
+                            dgvElements1.Rows.Add();
+                            dgvElements1[1, contEleNam].Value = item.Value;
+                            dgvElements1[3, contEleNam].Value = item.Key;
+                            contEleNam++;
+                        }
+                        foreach (var item in elementTypes)
+                        {
+                            dgvElements1[2, contEleTyp].Value = item.Value;
+                            if (item.Value == "Line" || item.Value == "Node" || item.Value == "Busbar")
+                            {
+                                contEleTyp++;
+                            }
+                            else
+                            {
+                                dgvElements1.Rows.RemoveAt(contEleTyp);
+                            }
+                        }
+
+                        neplan.GetAllElementsOfElementType(proyecto, "Line", ref lineaNames, ref lineaTypes);//Se carga los nombres y los tipos de elementos de las lineas en sus respectivos diccionarios
+                        neplan.GetAllElementsOfElementType(proyecto, "Trafo2Winding", ref trans2DNames, ref trans2DTypes);//Se carga los nombres y los tipos de elementos de los transformadores de dos devanados en sus respectivos diccionarios
+                        neplan.GetAllElementsOfElementType(proyecto, "Trafo3Winding", ref trans3DNames, ref trans3DTypes);//Se carga los nombres y los tipos de elementos de los transformadores de tres devanados en sus respectivos diccionarios
+
+                        int conteroResult = 0;
+                        foreach (var item2 in lineaNames)
+                        {
+                            dgvElements2.Rows.Add();
+                            dgvElements2[1, conteroResult].Value = item2.Value;
+                            dgvElements2[2, conteroResult].Value = "Line";
+                            conteroResult++;
+                        }
+                        foreach (var item2 in trans2DNames)
+                        {
+                            dgvElements2.Rows.Add();
+                            dgvElements2[1, conteroResult].Value = item2.Value;
+                            dgvElements2[2, conteroResult].Value = "Trafo2Winding";
+                            conteroResult++;
+                        }
+                        foreach (var item2 in trans3DNames)
+                        {
+                            dgvElements2.Rows.Add();
+                            dgvElements2[1, conteroResult].Value = item2.Value;
+                            dgvElements2[2, conteroResult].Value = "TrafoWinding";
+                            conteroResult++;
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
+
+        private void dgvElements1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+
+        ShortCircuitLineLocation LineaACorto = new ShortCircuitLineLocation { };
+        string[] NombreNodo = new string[100];
+        ShortCircuitLineLocation[] milineacorto = new ShortCircuitLineLocation[1];
+        int x = 0;
+        int y = 0;
+        int z = 0;
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var neplan = webservice.nepService;
+            int cont2 = 0;
+            List<string> nomElementSel2 = new List<string>();
+            foreach (DataGridViewRow row in dgvElements1.Rows)
+            {
+                bool selecciontoLoco2 = Convert.ToBoolean(row.Cells[0].Value) == true;
+                //string ElementoLoco = (string)row.Cells[1].Value;
+
+                if (Convert.ToBoolean(row.Cells[0].Value) == true)
+                {
+                    nomElementSel2.Add(row.Cells[1].Value.ToString());
+                    cont2++;
+                }
+            }
+
+            if (cont2 != 0)
+            {
+                ubucacioncorto = neplan.GetShortCircuitLocations(proyecto);//En esta parte se verifica que el proyecto no tenga otros elementos en corto
+                int conteoCorto = ubucacioncorto.Count();
+                if (ubucacioncorto.Count() == 0)
+                {
+                    int cont3 = 0;
+                    List<string> nomElementResult = new List<string>();
+                    foreach (DataGridViewRow row in dgvElements2.Rows)
+                    {
+                        bool selecciontoLoco3 = Convert.ToBoolean(row.Cells[0].Value) == true;
+                        //string ElementoLoco = (string)row.Cells[1].Value;
+
+                        if (Convert.ToBoolean(row.Cells[0].Value) == true)
+                        {
+                            nomElementResult.Add(row.Cells[1].Value.ToString());
+                            cont3++;
+                        }
+                    }
+                    if (cont3 != 0)
+                    {
+                        realizarAnalisis();//realizarAnalisis();
+                        //MessageBox.Show("SE REALIZA EL CORTOCIRCUITO SELECCIONADO");//realizarAnalisis();
+                    }
+                    else
+                    {
+                        MessageBox.Show("NO SE hA SELECCIONADO NINGÚN ELEMENTO PARA EXPORTAR LOS RESULTADOS DEL ANALISIS DE CORTOCIRCUITO");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("EL PROYECTO YA TIENE ELEMENTOS EN CORTOCIRCUITOS. DESACTIVE LOS ELEMENTOS Y GRABE EL PROYECTO NUEVAMENTE ");//realizarAnalisis();
+                }
+            }
+            else
+            {
+                MessageBox.Show("NO SE A SELECCIONADO NINGÚN ELEMENTO EN FALLA");
+            }
+        }
+
+        #region Funcion analizar
+        private void realizarAnalisis()
+        {
+            var neplan = webservice.nepService;
+            int cont = 0;
+            List<Guid> idElements = new List<Guid>();
+            List<Guid> allNodos = new List<Guid>();
+
+            // metodo para obtener una lista de un elemento
+            //neplan.GetElementAttributeListByID(proyecto.ProjectName, "69adbcef-716d-4bd3-5bd2-39f6199354c1", ref attributeName2Value);
+            neplan.GetElementAttributeListByName(proyecto.ProjectName, "L3-2", "Line", ref attributeName2Value);
+
+            foreach (KeyValuePair<string, string> valor in attributeName2Value)
+            {
+                MessageBox.Show("El primer valor es:" + attributeName2Value.Keys + "= " + attributeName2Value.Values);
+            }
+
+
+          
+
+            /*-- Obtengo los elementos seleccionados para ubicar las fallas y agrego el id a la lista "idElements" --*/
+            foreach (DataGridViewRow row in dgvElements1.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value) == true)
+                {
+                    idElements.Add(Guid.Parse(row.Cells[3].Value.ToString()));
+                    //elementsIDs[cont] = Guid.Parse(row.Cells[3].Value.ToString());
+                    nomElementSel.Add(row.Cells[1].Value.ToString());
+                    typeElementSel.Add(row.Cells[2].Value.ToString());
+                    cont++;
+                }
+            }
+            int contElementoR = 0;
+
+                        
+            /*-- Obtengo los elementos seleccionados y agrego el id a la lista "idElements" --*/
+            foreach (DataGridViewRow row2 in dgvElements2.Rows)
+            {
+                if (Convert.ToBoolean(row2.Cells[0].Value) == true)
+                {
+                    NombreElementoR.Add(row2.Cells[1].Value.ToString());
+                    TipoElementoR.Add(row2.Cells[2].Value.ToString());
+                    contElementoR++;
+                }
+            }
+
+            // EN ESTE PUNTO SE CARLAS LOS VALORES DE LAS LISTAS
+            tipoDeFallaEnCorto.Add("0");// trifasica
+            tipoDeFallaEnCorto.Add("1"); // monofasica
+            tipoDeFallaEnCorto.Add("2"); // bifasica
+            tipoDeFallaEnCorto.Add("3"); // bifasica a tierra
+            distanciadeFallo.Add(2);
+            distanciadeFallo.Add(50);
+            distanciadeFallo.Add(98);
+            impedanciaDeCorto.Add("0");
+            impedanciaDeCorto.Add("5");
+            impedanciaDeCorto.Add("10");
+            impedanciaDeCorto.Add("30");
+
+            //EN ESTE PUNTO SE ABRE EL ARCHIVO EXCEL
+            string fileTest = Environment.CurrentDirectory + @"\ResultadoCorto.xlsx";
+            _Excel.Application oApp;
+            _Excel.Worksheet oSheet;
+            _Excel.Workbook oBook;
+
+            if (!File.Exists(fileTest))
+            {
+                File.OpenWrite(fileTest);
+            }
+            oApp = new _Excel.Application();
+            oBook = oApp.Workbooks.Add();
+            oSheet = (_Excel.Worksheet)oBook.Worksheets.get_Item(1);
+            oApp.Visible = true;
+            oSheet.Cells[1, 2] = "ensayo";
+            titulosExcel2(ConteoResultado, ref oSheet);
+            
+            //EN ESTE PUNTO SE RALIZÁN LOS ANALISIS  DE CORTOCIRCUITO
+            foreach (var itemTypes in elementTypes)
+            {
+                if (itemTypes.Value == "Line")
+                {
+                    foreach (var itemName in elementNames)
+                    {
+                        Tipo_Elemento = "Line";//se guarda el tipo de elemento para exportar a Excel
+                        if (itemTypes.Key == itemName.Key)
+                        {
+                            foreach (var itemSeleccionado in idElements)
+                            {
+                                if (itemSeleccionado.ToString() == itemName.Key.ToString())
+                                {
+                                    foreach (var itemTipoDeFalla in tipoDeFallaEnCorto)
+                                    {
+                                        //se guarda el nombre del tipo de falla para exportar a Excel
+                                        if (itemTipoDeFalla == "0") { Tipo_Falla = "TRIFASICO";}
+                                        if (itemTipoDeFalla == "1") { Tipo_Falla = "MONOFASICO";}
+                                        if (itemTipoDeFalla == "2") { Tipo_Falla = "BIFASICO";}
+                                        if (itemTipoDeFalla == "3") { Tipo_Falla = "BIFASICO_TIERRA";}
+
+                                        foreach (var itemImpedancia in impedanciaDeCorto)
+                                        {
+                                            foreach (var itemDistanciaDeFallo in distanciadeFallo)
+                                            {
+                                                neplan.SetCalcParameterAttribute(proyecto, "ShortCircuit", "FaultType", itemTipoDeFalla);//Se selcciona el tipo de falla
+                                                neplan.SetCalcParameterAttribute(proyecto, "ShortCircuit", "RArc", itemImpedancia);//Se selcciona la impedancia de falla
+                                                LineaACorto = new ShortCircuitLineLocation { ElementID = Guid.Parse(itemName.Key), IsFaultLocation = true, Distance = itemDistanciaDeFallo };
+                                                ShortCircuitLineLocation[] milineaw = new ShortCircuitLineLocation[1];
+                                                milineaw[0] = LineaACorto;
+                                                ReturnCode fijarLineaEnCorto = neplan.SetShortCircuitLocations(proyecto, milineaw);
+                                                //AnalysisReturnInfo analyse = neplan.AnalyseVariantWithAnalysisSettings(proyecto, Guid.NewGuid().ToString(), "ShortCircuit", null, null, null, null, settings);
+                                                //elementResults = neplan.GetAllElementResults(proyecto, "ShortCircuit");
+
+                                                int networkTypeGroupSC = 0;//identifier for network results(other indexes refer to area, zone, feeder etc.)
+                                                string[] networkresultsSC = webservice.nepService.GetListResultSummary(webservice.ext, "ShortCircuit", new DateTime(), networkTypeGroupSC, null);
+
+                                                AnalysisReturnInfo analysis2 = webservice.nepService.AnalyseVariant(webservice.ext, Guid.NewGuid().ToString(), "ShortCircuit", "Default", string.Empty, string.Empty, string.Empty);
+                                                string s2 = analysis2.ReturnInfo.ToString();// si el valor es "1" fue porque la ejecución fue exitosa. Si el valor es "-1" fue porque la ejecución no corrio
+                                                                                            //string s3 = analysis2.LogFilename.ToString();//Nombre del calculo
+                                                                                            //string s4 = analysis2.ResultFilename; //genera un archivo XML
+
+                                                if (analysis2.ReturnInfo == 1)//Verifica que el corto se ejecute corectamente
+                                                {
+                                                    for(int fila=0; fila < NombreElementoR.Count; fila++)
+                                                    {
+                                                        string NombreElemento = NombreElementoR[fila];
+                                                        string TipoElemento = TipoElementoR[fila];
+                                                        int portNr = 0;// 0:para el primer puerto del elemento
+                                                        short puerto = 0;
+                                                        string analysisType = "ShortCircuit";
+                                                        //MessageBox.Show("Cortocircuito ejecutado correctamente!");                
+                                                        //obtiene los resultados del elemento para la cuadrícula externa
+                                                        string resultadoSC1 = webservice.nepService.GetResultElementByName(webservice.ext, NombreElemento, TipoElemento, portNr, analysisType, null);
+                                                        //string resultSC2 = webservice.nepService.GetResultElementByName(webservice.ext, "R3-2", "OvercurrentRelais", portNr, "ShortCircuit", null);
+                                                        //Guid idelement=new;
+                                                        //Guid idelement = webservice.nepService.GetElementAtPort(webservice.ext, "L3-2", "Line", puerto);
+                                                        exportarExcel2(ConteoResultado, ref oSheet, itemName.Value, Tipo_Elemento, Tipo_Falla, itemImpedancia, itemDistanciaDeFallo, puerto, resultadoSC1, NombreElemento);
+                                                        ConteoResultado++;
+                                                        portNr = 1;
+                                                        puerto = 1;
+                                                        resultadoSC1 = webservice.nepService.GetResultElementByName(webservice.ext, NombreElemento, TipoElemento, portNr, analysisType, null);
+                                                        exportarExcel2(ConteoResultado, ref oSheet, itemName.Value, Tipo_Elemento, Tipo_Falla, itemImpedancia, itemDistanciaDeFallo, puerto, resultadoSC1, NombreElemento);
+                                                        ConteoResultado++;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("No se pudo correr el Cortocircuito!");
+                                                    operacion = false;
+                                                }
+                                                LineaACorto = new ShortCircuitLineLocation { ElementID = Guid.Parse(itemName.Key), IsFaultLocation = false, Distance = itemDistanciaDeFallo };
+                                                milineaw[0] = LineaACorto;
+                                                ReturnCode fijarLineaEnCorto2 = neplan.SetShortCircuitLocations(proyecto, milineaw);
+                                                //elementResults = neplan.GetAllElementResults(proyecto, "ShortCircuit");
+                                                //exportarResultados(elementResults, itemName.Value, itemTipoDeFalla, itemDistanciaDeFallo, itemImpedancia);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            MessageBox.Show("SE EJECUTO EL ANALISIS DE CORTO");
+            /* oBook.SaveAs(fileTest);*/
+            oBook.SaveAs(fileTest, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            oBook.Close();
+            oApp.Quit();
+        }
+        #endregion
+
+        //private void exportarResultados(NeplanServiceElementResult[] elementResults, string NombreLinea, string TipoDeFalla, double DistanciaDeFallo, string Impedancia)
+        //{
+        //    List<string> resultadosRelay = new List<string>();
+        //    foreach (var item in elementResults)
+        //    {
+        //        foreach (var itemType in elementTypes)
+        //        {
+        //            if (item.ElementID.ToString() == itemType.Key)
+        //            {
+        //                if (itemType.Value == "")
+        //                {
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+        private void dgvElements2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        #region Boton Limpiar
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var neplan = webservice.nepService;
+            //Reiniciar cont1, tabla de resultados
+            //Limpiar tabla 1
+            dgvElements1.Rows.Clear();
+            dgvElements1.Refresh();
+            dgvElements2.Rows.Clear();
+            dgvElements2.Refresh();
+            ubucacioncorto = null;
+
+            //Limpiar tabla resultados
+            proyecto = null;
+            //limpiar_hojas_nodos();
+
+        }
+        #endregion
+        
+        private void button4_Click(object sender, EventArgs e)
+        {
+        }
+
+        #region Boton EXPORTAR
+        private void titulosExcel2(int fila, ref _Excel.Worksheet hoja)
+        {
+            _Excel.Range rango;
+            //hoja.Cells[1, 1] = "Creación de base de datos cortocircuito";//Se crea el titulo de la hoja
+            hoja.Cells[4, 1] = "Elemento falla";
+            hoja.Cells[4, 2] = "Tipo Elemento";
+            hoja.Cells[4, 3] = "Tipo Falla";
+            hoja.Cells[4, 4] = "Ohm Falla";
+            hoja.Cells[4, 5] = "% ubicación";
+            hoja.Cells[4, 6] = "Nombre Elemento";
+            hoja.Cells[4, 7] = "Puerto Elemento";
+            hoja.Cells[4, 8] = "Direccion";
+            hoja.Cells[4, 9] = "IK2L1";
+            hoja.Cells[4, 10] = "IK2L2";
+            hoja.Cells[4, 11] = "IK2L3";
+            hoja.Cells[4, 12] = "I3I0";
+
+            //Se incluye los valores de los elementos donde se depositaran los resultados de corto que se van a colocar la tabla de resultados
+            for (int fila2 = 0; fila2 < NombreElementoR.Count; fila2++)
+            {
+                hoja.Cells[1, fila2 + 1] = NombreElementoR[fila2];
+                hoja.Cells[2,fila2 + 1] = TipoElementoR[fila2];
+            }
+            
+            //Se incluye los valores de las resistencias en la tabla de resultados
+            int contt = 1;
+            foreach(var resistencia in impedanciaDeCorto)
+            {
+                hoja.Cells[3,contt] = resistencia;
+                contt++;
+            }
+
+            //Se incluye los valores de los elementos en falla en la tabla de resultados
+            for (int fila2 = 0; fila2 < nomElementSel.Count; fila2++)
+            {
+                hoja.Cells[fila2+5, 18] = nomElementSel[fila2];
+                hoja.Cells[fila2+5, 19] = typeElementSel[fila2];
+            }
+
+            //PONER BORDE A LA CELDA
+            rango = hoja.Range["A4", "L4"];
+            rango.Borders.LineStyle = _Excel.XlLineStyle.xlContinuous;
+
+            //modificamos los anchos de las colunnas
+            rango = hoja.Columns[1];
+            rango.ColumnWidth = 30;
+            rango = hoja.Columns[2];
+            rango.ColumnWidth = 20;
+            rango = hoja.Columns[3];
+            rango.ColumnWidth = 20;
+            rango = hoja.Columns[4];
+            rango.ColumnWidth = 20;
+            rango = hoja.Columns[5];
+            rango.ColumnWidth = 20;
+            rango = hoja.Columns[6];
+            rango.ColumnWidth = 20;
+            rango = hoja.Columns[7];
+            rango.ColumnWidth = 20;
+            rango = hoja.Columns[8];
+            rango.ColumnWidth = 20;
+            rango = hoja.Columns[9];
+            rango.ColumnWidth = 20;
+            rango = hoja.Columns[10];
+            rango.ColumnWidth = 20;
+            rango = hoja.Columns[10];
+            rango.ColumnWidth = 20;
+            rango = hoja.Columns[11];
+            rango.ColumnWidth = 20;
+            rango = hoja.Columns[12];
+            rango.ColumnWidth = 20;
+        }
+
+        public void exportarExcel2(int fila, ref _Excel.Worksheet hoja, string dato1, string dato2, string dato3, string dato4, double dato5, short puerto,string resultado,string dato6)
+        {
+
+            hoja.Cells[fila, 1] = dato1;//Elemento en falla
+            hoja.Cells[fila, 2] = dato2;//Tipo Elemento en falla
+            hoja.Cells[fila, 3] = dato3;//Tipo Falla
+            hoja.Cells[fila, 4] = dato4;//Ohm Falla
+            hoja.Cells[fila, 5] = dato5;//% ubicación de la falla
+            hoja.Cells[fila, 6] = dato6;//Metodo para obtener el nombre donde se quiere ver los resultados de la corriente
+            hoja.Cells[fila, 7] = puerto;//Puerto donde se analizará los resultados de las corrientes
+            hoja.Cells[fila, 8] = GetXMLAttributeFaultedirection(resultado);//Metodo para obtener la direccion de la corrinete
+            hoja.Cells[fila, 9] = GetXMLAttributeIk2L1(resultado);//Metodo para obtener los resultados de la corriente
+            hoja.Cells[fila, 10] = GetXMLAttributeIk2L2(resultado);//Metodo para obtener los resultados de la corriente
+            hoja.Cells[fila, 11] = GetXMLAttributeIk2L3(resultado);//Metodo para obtener los resultados de la corriente
+            hoja.Cells[fila, 12] = GetXMLAttributeI3I0(resultado);//Metodo para obtener los resultados de la corriente
+            hoja.Cells[fila, 17] = dato1 + dato2 + dato3 + dato4 + dato5 + dato6 + puerto;
+        }
+        //private void releaseObject(object obj)
+        //{
+        //    try
+        //    {
+        //        System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+        //        obj = null;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        obj = null;
+        //        MessageBox.Show("Error mientras liberas liberada objeto" + ex.ToString());
+        //    }
+        //}
+
+        #endregion
+        //Metodo para encapsular los resultados del cortocircuito Ik2L1
+        private string GetXMLAttributeIk2L1(string result)
+        {
+            string rpta = "";
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(result);
+            XmlNodeList elemList = doc.GetElementsByTagName("Ik2L1");
+            for (int i = 0; i < elemList.Count; i++)
+            {
+                rpta = elemList[i].InnerXml;
+            }
+            return rpta;
+        }
+
+        #region CONVERTIR LOS VALORES DE XML
+        //Metodo para encapsular los resultados del cortocircuito Ik2L2
+        private string GetXMLAttributeIk2L2(string result)
+        {
+            string rpta = "";
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(result);
+            XmlNodeList elemList = doc.GetElementsByTagName("Ik2L2");
+            for (int i = 0; i < elemList.Count; i++)
+            {
+                rpta = elemList[i].InnerXml;
+            }
+            return rpta;
+        }
+        //Metodo para encapsular los resultados del cortocircuito Ik2L3
+        private string GetXMLAttributeIk2L3(string result)
+        {
+            string rpta = "";
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(result);
+            XmlNodeList elemList = doc.GetElementsByTagName("Ik2L3");
+            for (int i = 0; i < elemList.Count; i++)
+            {
+                rpta = elemList[i].InnerXml;
+            }
+            return rpta;
+        }
+        //Metodo para encapsular los resultados del cortocircuito I3I0
+        private string GetXMLAttributeI3I0(string result)
+        {
+            string rpta = "";
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(result);
+            XmlNodeList elemList = doc.GetElementsByTagName("I3I0");
+            for (int i = 0; i < elemList.Count; i++)
+            {
+                rpta = elemList[i].InnerXml;
+            }
+            return rpta;
+        }
+        //Metodo para encapsular los resultados del cortocircuito nodo de falla
+        private string GetXMLAttributeFaultedNode(string result)
+        {
+            string rpta = "";
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(result);
+            XmlNodeList elemList = doc.GetElementsByTagName("FaultedNode");
+            for (int i = 0; i < elemList.Count; i++)
+            {
+                rpta = elemList[i].InnerXml;
+            }
+            return rpta;
+        }
+        //Metodo para encapsular los resultados del cortocircuito direccion de falla
+        private string GetXMLAttributeFaultedirection(string result)
+        {
+            string rpta = "";
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(result);
+            XmlNodeList elemList = doc.GetElementsByTagName("FaultDirection");
+            for (int i = 0; i < elemList.Count; i++)
+            {
+                rpta = elemList[i].InnerXml;
+            }
+            return rpta;
+        }
+        #endregion
+  }
+
+}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services.External" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services.External" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfNeplanService.ElementResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NeplanService.ElementResult" nillable="true" type="tns:NeplanService.ElementResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNeplanService.ElementResult" nillable="true" type="tns:ArrayOfNeplanService.ElementResult" />
+  <xs:complexType name="NeplanService.ElementResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ElementID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Results" nillable="true" type="q1:ArrayOfKeyValueOfstringstring" />
+      <xs:element minOccurs="0" name="SimulationTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="XMLdata" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="portNr" type="xs:short" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NeplanService.ElementResult" nillable="true" type="tns:NeplanService.ElementResult" />
+  <xs:complexType name="NeplanService.Connection_info">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConnectionStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CoordinateX" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CoordinateY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Elem_Connection_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Elem_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Elem_Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ElementType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MPRN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phases" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NeplanService.Connection_info" nillable="true" type="tns:NeplanService.Connection_info" />
+  <xs:complexType name="ArrayOfNeplanService.LoadGeneration_info">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NeplanService.LoadGeneration_info" nillable="true" type="tns:NeplanService.LoadGeneration_info" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNeplanService.LoadGeneration_info" nillable="true" type="tns:ArrayOfNeplanService.LoadGeneration_info" />
+  <xs:complexType name="NeplanService.LoadGeneration_info">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="P" type="xs:double" />
+      <xs:element minOccurs="0" name="Q" type="xs:double" />
+      <xs:element minOccurs="0" name="Unit" type="xs:short" />
+      <xs:element minOccurs="0" name="elementname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="elementtype" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="elemid" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NeplanService.LoadGeneration_info" nillable="true" type="tns:NeplanService.LoadGeneration_info" />
+  <xs:complexType name="ExternalFeeder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AtElement" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AtNode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Color" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PGen" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="PLoad" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="QCap" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="QGen" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="QInd" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="QLoad" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="SourceVoltage" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExternalFeeder" nillable="true" type="tns:ExternalFeeder" />
+  <xs:complexType name="ArrayOfExternalFeeder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExternalFeeder" nillable="true" type="tns:ExternalFeeder" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExternalFeeder" nillable="true" type="tns:ArrayOfExternalFeeder" />
+  <xs:complexType name="ExternalTopologyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AreaID" type="ser:guid" />
+      <xs:element minOccurs="0" name="AreaName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FeederID" type="ser:guid" />
+      <xs:element minOccurs="0" name="FeederName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PartialNetworkFedForGWH" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PartialNetworkFedForLoadFlow" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PartialNetworkFedForShortCircuit" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PartialNetworkID" type="ser:guid" />
+      <xs:element minOccurs="0" name="PartialNetworkIsEarthed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PartialNetworkName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PartialNetworkNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="SubareaID" type="ser:guid" />
+      <xs:element minOccurs="0" name="SubareaName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZoneID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ZoneName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExternalTopologyInfo" nillable="true" type="tns:ExternalTopologyInfo" />
+  <xs:complexType name="ExternalElement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ElementID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ElementName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ElementType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExternalElement" nillable="true" type="tns:ExternalElement" />
+  <xs:complexType name="ArrayOfExternalElement">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExternalElement" nillable="true" type="tns:ExternalElement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExternalElement" nillable="true" type="tns:ArrayOfExternalElement" />
+</xs:schema>

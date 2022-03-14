@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services.External" />
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd18" namespace="http://BCP.ch/Neplan/Web/Models/TechData" />
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd19" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.ImportExport.XMLList" />
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External" />
+  <xs:complexType name="ArrayOfstring">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
+  <xs:complexType name="ArrayOfKeyValueOfstringstring">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringstring">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringstring" nillable="true" type="tns:ArrayOfKeyValueOfstringstring" />
+  <xs:complexType name="ArrayOfguid">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="guid" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfguid" nillable="true" type="tns:ArrayOfguid" />
+  <xs:complexType name="ArrayOfdouble">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="double" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdouble" nillable="true" type="tns:ArrayOfdouble" />
+  <xs:complexType name="ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringArrayOfstringty7Ep6D1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" type="tns:ArrayOfstring" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" nillable="true" type="tns:ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" />
+  <xs:complexType name="ArrayOfKeyValueOfguidExternalTopologyInfo6q9qOKe8">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfguidExternalTopologyInfo6q9qOKe8">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="ser:guid" />
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services.External" name="Value" nillable="true" type="q1:ExternalTopologyInfo" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfguidExternalTopologyInfo6q9qOKe8" nillable="true" type="tns:ArrayOfKeyValueOfguidExternalTopologyInfo6q9qOKe8" />
+  <xs:complexType name="ArrayOfKeyValueOfguidstring">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfguidstring">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="ser:guid" />
+            <xs:element name="Value" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfguidstring" nillable="true" type="tns:ArrayOfKeyValueOfguidstring" />
+  <xs:complexType name="ArrayOfKeyValueOfdateTimeArrayOfstringty7Ep6D1">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfdateTimeArrayOfstringty7Ep6D1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="xs:dateTime" />
+            <xs:element name="Value" nillable="true" type="tns:ArrayOfstring" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfdateTimeArrayOfstringty7Ep6D1" nillable="true" type="tns:ArrayOfKeyValueOfdateTimeArrayOfstringty7Ep6D1" />
+  <xs:complexType name="ArrayOfint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" />
+  <xs:complexType name="ArrayOfKeyValueOfExternalElementArrayOfdouble0q_Pienwx">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfExternalElementArrayOfdouble0q_Pienwx">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services.External" name="Key" nillable="true" type="q2:ExternalElement" />
+            <xs:element name="Value" nillable="true" type="tns:ArrayOfdouble" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfExternalElementArrayOfdouble0q_Pienwx" nillable="true" type="tns:ArrayOfKeyValueOfExternalElementArrayOfdouble0q_Pienwx" />
+  <xs:complexType name="ArrayOfshort">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="short" type="xs:short" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfshort" nillable="true" type="tns:ArrayOfshort" />
+  <xs:complexType name="ArrayOfKeyValueOfguidArrayOfSwitchedAdmittanceBlockG8Rdkfby">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfguidArrayOfSwitchedAdmittanceBlockG8Rdkfby">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="ser:guid" />
+            <xs:element xmlns:q3="http://BCP.ch/Neplan/Web/Models/TechData" name="Value" nillable="true" type="q3:ArrayOfSwitchedAdmittanceBlock" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfguidArrayOfSwitchedAdmittanceBlockG8Rdkfby" nillable="true" type="tns:ArrayOfKeyValueOfguidArrayOfSwitchedAdmittanceBlockG8Rdkfby" />
+  <xs:complexType name="ArrayOfKeyValueOfguidArrayOfPowerLoadDatagNs_SHUa5">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfguidArrayOfPowerLoadDatagNs_SHUa5">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="ser:guid" />
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.ImportExport.XMLList" name="Value" nillable="true" type="q4:ArrayOfPowerLoadData" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfguidArrayOfPowerLoadDatagNs_SHUa5" nillable="true" type="tns:ArrayOfKeyValueOfguidArrayOfPowerLoadDatagNs_SHUa5" />
+  <xs:complexType name="ArrayOfKeyValueOfguidArrayOfstringox8ieOcg">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfguidArrayOfstringox8ieOcg">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="ser:guid" />
+            <xs:element name="Value" nillable="true" type="tns:ArrayOfstring" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfguidArrayOfstringox8ieOcg" nillable="true" type="tns:ArrayOfKeyValueOfguidArrayOfstringox8ieOcg" />
+  <xs:complexType name="ArrayOfKeyValueOfstringArrayOfLineSectionDataxrnbvAFC">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringArrayOfLineSectionDataxrnbvAFC">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External" name="Value" nillable="true" type="q5:ArrayOfLineSectionData" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringArrayOfLineSectionDataxrnbvAFC" nillable="true" type="tns:ArrayOfKeyValueOfstringArrayOfLineSectionDataxrnbvAFC" />
+  <xs:complexType name="ArrayOfKeyValueOfguidArrayOfLineSectionData_PbMZ2GWh">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfguidArrayOfLineSectionData_PbMZ2GWh">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="ser:guid" />
+            <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External" name="Value" nillable="true" type="q6:ArrayOfLineSectionData" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfguidArrayOfLineSectionData_PbMZ2GWh" nillable="true" type="tns:ArrayOfKeyValueOfguidArrayOfLineSectionData_PbMZ2GWh" />
+</xs:schema>

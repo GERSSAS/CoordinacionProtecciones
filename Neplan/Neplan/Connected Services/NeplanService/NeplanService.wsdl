@@ -1,0 +1,2459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.neplan.ch/Web/External" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.neplan.ch/Web/External" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.neplan.ch/Web/External/Imports">
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd0" namespace="http://www.neplan.ch/Web/External" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services.External" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.Result" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.TechData" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd8" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services.ServiceControl" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Helpers.CimInterface" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.External.TechData" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services.ServiceManager" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd16" namespace="http://BCP.ch/Neplan/Web/Models/CalcParameterData" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd17" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd18" namespace="http://BCP.ch/Neplan/Web/Models/TechData" />
+      <xsd:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd19" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.ImportExport.XMLList" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="NeplanService_GetResultElementByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultElementByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetResultElementByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultElementByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetResultsElementsByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultsElementsByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetResultsElementsByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultsElementsByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetResultElementByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultElementByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetResultElementByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultElementByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetFeasibilityResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeasibilityResults" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetFeasibilityResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeasibilityResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetResultOfElements_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultOfElements" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetResultOfElements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultOfElementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResults" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AnalyseVariantWithAnalysisSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:AnalyseVariantWithAnalysisSettings" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AnalyseVariantWithAnalysisSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AnalyseVariantWithAnalysisSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AnalyseVariant_InputMessage">
+    <wsdl:part name="parameters" element="tns:AnalyseVariant" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AnalyseVariant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AnalyseVariantResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_IsAnalysisDone_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsAnalysisDone" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_IsAnalysisDone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsAnalysisDoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DoAnalysisFromFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoAnalysisFromFiles" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DoAnalysisFromFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoAnalysisFromFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_EnergyCalculationFromFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnergyCalculationFromFiles" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_EnergyCalculationFromFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnergyCalculationFromFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_LoadAllocationFromDB_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadAllocationFromDB" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_LoadAllocationFromDB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadAllocationFromDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_LoadAllocationFromMeasurmentFileAndProjectName_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadAllocationFromMeasurmentFileAndProjectName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_LoadAllocationFromMeasurmentFileAndProjectName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadAllocationFromMeasurmentFileAndProjectNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_LoadAllocationFromMeasurmentFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadAllocationFromMeasurmentFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_LoadAllocationFromMeasurmentFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadAllocationFromMeasurmentFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromListFileAndDoLoadAllocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromListFileAndDoLoadAllocation" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromListFileAndDoLoadAllocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromListFileAndDoLoadAllocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AreCalculationResultsValid_InputMessage">
+    <wsdl:part name="parameters" element="tns:AreCalculationResultsValid" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AreCalculationResultsValid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AreCalculationResultsValidResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_StartAnalysis_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartAnalysis" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_StartAnalysis_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartAnalysisResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_StopAnalysis_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopAnalysis" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_StopAnalysis_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopAnalysisResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteAnaylsisLogFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAnaylsisLogFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteAnaylsisLogFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAnaylsisLogFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteAnalysisResultFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAnalysisResultFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteAnalysisResultFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAnalysisResultFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProject" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_MarkedProjectAsDeleted_InputMessage">
+    <wsdl:part name="parameters" element="tns:MarkedProjectAsDeleted" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_MarkedProjectAsDeleted_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MarkedProjectAsDeletedResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_removeAllExpiredProjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:removeAllExpiredProjects" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_removeAllExpiredProjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:removeAllExpiredProjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_createDailyBackup_InputMessage">
+    <wsdl:part name="parameters" element="tns:createDailyBackup" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_createDailyBackup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:createDailyBackupResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddFeederFromList_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFeederFromList" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddFeederFromList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFeederFromListResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromList_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromList" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromListResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromListFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromListFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromListFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromListFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_MergeProjectFromListFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:MergeProjectFromListFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_MergeProjectFromListFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MergeProjectFromListFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromCDE_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromCDE" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromCDE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromCDEResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromCDEFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromCDEFiles" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromCDEFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromCDEFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromCDEZipFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromCDEZipFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromCDEZipFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromCDEZipFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromPSSEFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromPSSEFiles" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromPSSEFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromPSSEFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromPSSEZipFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromPSSEZipFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromPSSEZipFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromPSSEZipFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromShapeFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromShapeFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromShapeFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromShapeFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromNDB_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromNDB" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportFromNDB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFromNDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportMeasuredDataFromXMlFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportMeasuredDataFromXMlFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportMeasuredDataFromXMlFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportMeasuredDataFromXMlFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportNepOper_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportNepOper" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportNepOper_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportNepOperResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElevationToAllNodes_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetElevationToAllNodes" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElevationToAllNodes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetElevationToAllNodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ExportProjectToNEP360_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportProjectToNEP360" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ExportProjectToNEP360_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportProjectToNEP360Response" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_WriteMessageToLogFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:WriteMessageToLogFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_WriteMessageToLogFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WriteMessageToLogFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteUserLogFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserLogFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteUserLogFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserLogFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLogFileAsString_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogFileAsString" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLogFileAsString_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogFileAsStringResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLogFileAsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogFileAsList" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLogFileAsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogFileAsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_TextUpload_InputMessage">
+    <wsdl:part name="parameters" element="tns:TextUpload" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_TextUpload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TextUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_XMLUpload_InputMessage">
+    <wsdl:part name="parameters" element="tns:XMLUpload" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_XMLUpload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:XMLUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_CDEUpload_InputMessage">
+    <wsdl:part name="parameters" element="tns:CDEUpload" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_CDEUpload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CDEUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_NDBUpload_InputMessage">
+    <wsdl:part name="parameters" element="tns:NDBUpload" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_NDBUpload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NDBUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_NepOperUpload_InputMessage">
+    <wsdl:part name="parameters" element="tns:NepOperUpload" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_NepOperUpload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NepOperUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_Nep360Upload_InputMessage">
+    <wsdl:part name="parameters" element="tns:Nep360Upload" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_Nep360Upload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Nep360UploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ZipUpload_InputMessage">
+    <wsdl:part name="parameters" element="tns:ZipUpload" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ZipUpload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ZipUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UCTUpload_InputMessage">
+    <wsdl:part name="parameters" element="tns:UCTUpload" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UCTUpload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UCTUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_NepMeasUpload_InputMessage">
+    <wsdl:part name="parameters" element="tns:NepMeasUpload" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_NepMeasUpload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NepMeasUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetUserLogFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserLogFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetUserLogFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserLogFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAnaylsisLogFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnaylsisLogFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAnaylsisLogFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnaylsisLogFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAnalysisResultFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnalysisResultFile" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAnalysisResultFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnalysisResultFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetNamesOfElementsByType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNamesOfElementsByType" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetNamesOfElementsByType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNamesOfElementsByTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_FindSwitchStatusOfElements_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindSwitchStatusOfElements" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_FindSwitchStatusOfElements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindSwitchStatusOfElementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_Find_Voltage_Level_of_One_Port_Element_InputMessage">
+    <wsdl:part name="parameters" element="tns:Find_Voltage_Level_of_One_Port_Element" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_Find_Voltage_Level_of_One_Port_Element_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Find_Voltage_Level_of_One_Port_ElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetBusBarOf1PortElementByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBusBarOf1PortElementByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetBusBarOf1PortElementByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBusBarOf1PortElementByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetBusBarOf1PortElementByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBusBarOf1PortElementByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetBusBarOf1PortElementByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBusBarOf1PortElementByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ChangeSwitchStatusOfElements_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeSwitchStatusOfElements" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ChangeSwitchStatusOfElements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeSwitchStatusOfElementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetPQValuesLdSmAsm_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPQValuesLdSmAsm" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetPQValuesLdSmAsm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPQValuesLdSmAsmResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetPowerofLoadsGenerators_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPowerofLoadsGenerators" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetPowerofLoadsGenerators_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPowerofLoadsGeneratorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ChangeSwitchStatusOfElementList_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeSwitchStatusOfElementList" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ChangeSwitchStatusOfElementList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeSwitchStatusOfElementListResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportIEC_62325_451_2FilesAndDoCIMExport_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportIEC_62325_451_2FilesAndDoCIMExport" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ImportIEC_62325_451_2FilesAndDoCIMExport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportIEC_62325_451_2FilesAndDoCIMExportResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_RunEMFProcess_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunEMFProcess" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_RunEMFProcess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunEMFProcessResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_RunCIMExportTranselectrica_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunCIMExportTranselectrica" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_RunCIMExportTranselectrica_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunCIMExportTranselectricaResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetFeederIDByNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeederIDByNames" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetFeederIDByNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeederIDByNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetIDByFeederNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIDByFeederNames" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetIDByFeederNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIDByFeederNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllFeeders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFeeders" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllFeeders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFeedersResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetFeederNameByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeederNameByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetFeederNameByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeederNameByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetFeederIDByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeederIDByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetFeederIDByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeederIDByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetFeederDataByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeederDataByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetFeederDataByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeederDataByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetFeederDataByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeederDataByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetFeederDataByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeederDataByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetFeederData_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetFeederData" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetFeederData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetFeederDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteFeeders_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFeeders" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteFeeders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFeedersResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetTopologyInformationOfElements_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopologyInformationOfElements" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetTopologyInformationOfElements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopologyInformationOfElementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllAreas_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAreas" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllAreas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAreasResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllAreaEICs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAreaEICs" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllAreaEICs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAreaEICsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetAreasEICs_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetAreasEICs" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetAreasEICs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetAreasEICsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllSubAreas_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSubAreas" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllSubAreas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSubAreasResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetSubAreaNameByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubAreaNameByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetSubAreaNameByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubAreaNameByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetSubAreaIDByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubAreaIDByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetSubAreaIDByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubAreaIDByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllZones_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllZones" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllZones_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllZonesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllZoneEICs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllZoneEICs" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllZoneEICs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllZoneEICsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetZoneNameByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZoneNameByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetZoneNameByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZoneNameByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetZoneIDByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZoneIDByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetZoneIDByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZoneIDByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetZoneFactorsByPropertyNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZoneFactorsByPropertyNames" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetZoneFactorsByPropertyNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZoneFactorsByPropertyNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetZoneFactorsByPropertyNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetZoneFactorsByPropertyNames" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetZoneFactorsByPropertyNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetZoneFactorsByPropertyNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_CIMImport_InputMessage">
+    <wsdl:part name="parameters" element="tns:CIMImport" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_CIMImport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CIMImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_CIMUpdateSSHData_InputMessage">
+    <wsdl:part name="parameters" element="tns:CIMUpdateSSHData" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_CIMUpdateSSHData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CIMUpdateSSHDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ValidateCGMESModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateCGMESModel" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_ValidateCGMESModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateCGMESModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_CIMExport_InputMessage">
+    <wsdl:part name="parameters" element="tns:CIMExport" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_CIMExport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CIMExportResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetNeplanIDtoCimIDDictionary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNeplanIDtoCimIDDictionary" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetNeplanIDtoCimIDDictionary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNeplanIDtoCimIDDictionaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddDataToTimeDependentCurves_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDataToTimeDependentCurves" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddDataToTimeDependentCurves_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDataToTimeDependentCurvesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetNeplanIDtoEICodeDictionary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNeplanIDtoEICodeDictionary" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetNeplanIDtoEICodeDictionary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNeplanIDtoEICodeDictionaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddUpdateTopologyOperStateForElement_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUpdateTopologyOperStateForElement" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddUpdateTopologyOperStateForElement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUpdateTopologyOperStateForElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteTopologyOperStateForElements_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTopologyOperStateForElements" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteTopologyOperStateForElements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTopologyOperStateForElementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddUpdateOperStateForElement_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUpdateOperStateForElement" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddUpdateOperStateForElement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUpdateOperStateForElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsWithOperationalStates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsWithOperationalStates" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsWithOperationalStates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsWithOperationalStatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteOperationalState_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOperationalState" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteOperationalState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOperationalStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteOperationalStateForItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOperationalStateForItems" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteOperationalStateForItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOperationalStateForItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetOperationalStateNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOperationalStateNames" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetOperationalStateNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOperationalStateNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteAllOperationalStates_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllOperationalStates" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteAllOperationalStates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllOperationalStatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetOrUpdateElementTimeDependentCurvePoints_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrUpdateElementTimeDependentCurvePoints" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetOrUpdateElementTimeDependentCurvePoints_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrUpdateElementTimeDependentCurvePointsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementCalcSettingForCalcParameter_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementCalcSettingForCalcParameter" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementCalcSettingForCalcParameter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementCalcSettingForCalcParameterResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementCalcSettingForCalcParameter_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementCalcSettingForCalcParameter" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementCalcSettingForCalcParameter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementCalcSettingForCalcParameterResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetShortCircuitLocations_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetShortCircuitLocations" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetShortCircuitLocations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetShortCircuitLocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetShortCircuitLocations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetShortCircuitLocations" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetShortCircuitLocations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetShortCircuitLocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetCommonModesForAnalysisType_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetCommonModesForAnalysisType" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetCommonModesForAnalysisType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetCommonModesForAnalysisTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCommonModesForAnalysisType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommonModesForAnalysisType" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCommonModesForAnalysisType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommonModesForAnalysisTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteCommonModesForAnalysisType_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCommonModesForAnalysisType" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteCommonModesForAnalysisType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCommonModesForAnalysisTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateElementLibrary_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateElementLibrary" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateElementLibrary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateElementLibraryResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateElementsLibrary_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateElementsLibrary" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateElementsLibrary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateElementsLibraryResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_CreateProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateProject" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_CreateProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProject" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SaveProjectAs_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveProjectAs" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SaveProjectAs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveProjectAsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetProjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjects" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetProjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetScenarios_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetScenarios" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetScenarios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetScenariosResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLogOnUrlWithProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogOnUrlWithProject" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLogOnUrlWithProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogOnUrlWithProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLogOnUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogOnUrl" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLogOnUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogOnUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLogOnSessionID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogOnSessionID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLogOnSessionID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogOnSessionIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddCustomerTypeDefinition_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCustomerTypeDefinition" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddCustomerTypeDefinition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCustomerTypeDefinitionResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_RemoveCustomerTypeDefinition_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCustomerTypeDefinition" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_RemoveCustomerTypeDefinition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCustomerTypeDefinitionResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCustomerTypeDefinitions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerTypeDefinitions" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCustomerTypeDefinitions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerTypeDefinitionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertGasNode_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertGasNode" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertGasNode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertGasNodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertNode_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertNode" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertNode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertNodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertNodeWithoutGraphic_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertNodeWithoutGraphic" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertNodeWithoutGraphic_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertNodeWithoutGraphicResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertBusbar_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertBusbar" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertBusbar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertBusbarResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertLine_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLine" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertLine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLineResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertLineByNodeID_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLineByNodeID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertLineByNodeID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLineByNodeIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertLineAsym_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLineAsym" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertLineAsym_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLineAsymResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_Insert2PortElement_InputMessage">
+    <wsdl:part name="parameters" element="tns:Insert2PortElement" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_Insert2PortElement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Insert2PortElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_Insert1PortElement_InputMessage">
+    <wsdl:part name="parameters" element="tns:Insert1PortElement" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_Insert1PortElement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Insert1PortElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertProtectionElement_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProtectionElement" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertProtectionElement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProtectionElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertFeeder_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertFeeder" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertFeeder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertFeederResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertArea_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertArea" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertArea_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertZone_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertZone" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertZone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertZoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertMeasurement_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertMeasurement" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertMeasurement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertMeasurementResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertMeasurementByElementID_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertMeasurementByElementID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertMeasurementByElementID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertMeasurementByElementIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteMeasurementForElement_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMeasurementForElement" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteMeasurementForElement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMeasurementForElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteMeasurementDefinitionForProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMeasurementDefinitionForProject" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteMeasurementDefinitionForProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMeasurementDefinitionForProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetMeasurementDefinitionForProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMeasurementDefinitionForProject" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetMeasurementDefinitionForProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMeasurementDefinitionForProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertDiagram_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDiagram" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertDiagram_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDiagramResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertGraphicLayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertGraphicLayer" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertGraphicLayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertGraphicLayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertGraphicLayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertGraphicLayers" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_InsertGraphicLayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertGraphicLayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateGraphicLayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGraphicLayers" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateGraphicLayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGraphicLayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetCalcParameterAttribute_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetCalcParameterAttribute" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetCalcParameterAttribute_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetCalcParameterAttributeResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetAttributeForCalcParameter_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetAttributeForCalcParameter" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetAttributeForCalcParameter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetAttributeForCalcParameterResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCalcParameterAttributes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalcParameterAttributes" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCalcParameterAttributes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalcParameterAttributesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCalcParameterAttributesDescription_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalcParameterAttributesDescription" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCalcParameterAttributesDescription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalcParameterAttributesDescriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetOptimalPowerFlowObjectiveFunction_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetOptimalPowerFlowObjectiveFunction" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetOptimalPowerFlowObjectiveFunction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetOptimalPowerFlowObjectiveFunctionResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_LoadOutagesForContigency_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadOutagesForContigency" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_LoadOutagesForContigency_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadOutagesForContigencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddOptimalPowerFlowInterfaces_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddOptimalPowerFlowInterfaces" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddOptimalPowerFlowInterfaces_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddOptimalPowerFlowInterfacesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetOptimalPowerFlowInterfaces_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimalPowerFlowInterfaces" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetOptimalPowerFlowInterfaces_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimalPowerFlowInterfacesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteOptimalPowerFlowInterfaces_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOptimalPowerFlowInterfaces" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteOptimalPowerFlowInterfaces_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOptimalPowerFlowInterfacesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllDiagramNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDiagramNames" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllDiagramNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDiagramNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCoordinatesOfElement_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoordinatesOfElement" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCoordinatesOfElement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoordinatesOfElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCoordinatesOfElementByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoordinatesOfElementByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCoordinatesOfElementByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoordinatesOfElementByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCoordinatesOfAllElements_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoordinatesOfAllElements" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetCoordinatesOfAllElements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoordinatesOfAllElementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAtPort_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAtPort" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAtPort_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAtPortResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAtPortByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAtPortByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAtPortByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAtPortByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAtPortIDs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAtPortIDs" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAtPortIDs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAtPortIDsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetGraphicLayersForElementByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGraphicLayersForElementByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetGraphicLayersForElementByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGraphicLayersForElementByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsOfProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsOfProject" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsOfProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsOfProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsOfElementType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsOfElementType" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsOfElementType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsOfElementTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsOfArea_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsOfArea" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsOfArea_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsOfAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsOfFeeder_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsOfFeeder" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsOfFeeder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsOfFeederResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsOfZone_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsOfZone" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsOfZone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsOfZoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddSubLoad_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubLoad" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddSubLoad_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubLoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AssignPowerTo1Port_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssignPowerTo1Port" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AssignPowerTo1Port_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssignPowerTo1PortResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AssignPowerTo1PortByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssignPowerTo1PortByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AssignPowerTo1PortByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssignPowerTo1PortByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementData_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementData" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementDataByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementDataByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementDataByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementDataByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementDataByNameandType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementDataByNameandType" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementDataByNameandType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementDataByNameandTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementDataByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementDataByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementDataByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementDataByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementDataByIDandType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementDataByIDandType" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementDataByIDandType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementDataByIDandTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetConnectedElementsByElementID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConnectedElementsByElementID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetConnectedElementsByElementID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConnectedElementsByElementIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementAttribute_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementAttribute" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementAttribute_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementAttributeResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementAttributeByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementAttributeByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementAttributeByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementAttributeByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementAttributes_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementAttributes" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementAttributes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementAttributesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementListAttributeByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementListAttributeByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetElementListAttributeByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetElementListAttributeByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAttributeByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAttributeByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAttributeByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAttributeByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAttributeByElementID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAttributeByElementID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAttributeByElementID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAttributeByElementIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementListAttributeByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementListAttributeByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementListAttributeByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementListAttributeByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAttributeListByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAttributeListByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAttributeListByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAttributeListByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAttributeListByElementID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAttributeListByElementID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAttributeListByElementID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAttributeListByElementIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAttributeByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAttributeByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAttributeByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAttributeByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAttributeByElementName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAttributeByElementName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAttributeByElementName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAttributeByElementNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAttributeListByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAttributeListByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAttributeListByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAttributeListByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAttributeListByElementName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAttributeListByElementName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAttributeListByElementName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAttributeListByElementNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAttributes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAttributes" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetElementAttributes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElementAttributesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetShuntSwitchedAdmittanceBlocks_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetShuntSwitchedAdmittanceBlocks" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetShuntSwitchedAdmittanceBlocks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetShuntSwitchedAdmittanceBlocksResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetShuntSwitchedAdmittanceBlocks_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetShuntSwitchedAdmittanceBlocks" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetShuntSwitchedAdmittanceBlocks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetShuntSwitchedAdmittanceBlocksResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetRegulatorParameter_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRegulatorParameter" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetRegulatorParameter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRegulatorParameterResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetRegulatorParameterByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRegulatorParameterByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetRegulatorParameterByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRegulatorParameterByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetRegulatorParameterByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegulatorParameterByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetRegulatorParameterByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegulatorParameterByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetRegulatorParameterListByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegulatorParameterListByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetRegulatorParameterListByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegulatorParameterListByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetRegulatorParameterByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegulatorParameterByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetRegulatorParameterByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegulatorParameterByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetRegulatorParameterListByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegulatorParameterListByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetRegulatorParameterListByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegulatorParameterListByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddReadAllRoleToProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddReadAllRoleToProject" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddReadAllRoleToProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddReadAllRoleToProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddVoltageLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddVoltageLevel" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddVoltageLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddVoltageLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetDiagramMinValues_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDiagramMinValues" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetDiagramMinValues_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDiagramMinValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetLineStyle_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetLineStyle" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetLineStyle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetLineStyleResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetDefaultValues_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDefaultValues" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetDefaultValues_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDefaultValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetDiagramParameterAttribute_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDiagramParameterAttribute" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetDiagramParameterAttribute_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDiagramParameterAttributeResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetGraphicLayerWorldCoordinates_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetGraphicLayerWorldCoordinates" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetGraphicLayerWorldCoordinates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetGraphicLayerWorldCoordinatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddNodesFromList_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNodesFromList" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddNodesFromList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNodesFromListResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddElementsFromList_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddElementsFromList" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddElementsFromList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddElementsFromListResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddSubLoadsFromList_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubLoadsFromList" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddSubLoadsFromList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubLoadsFromListResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddSubLoads_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubLoads" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddSubLoads_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubLoadsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetSubLoadsFromMap_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubLoadsFromMap" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetSubLoadsFromMap_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubLoadsFromMapResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteSubLoads_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSubLoads" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteSubLoads_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSubLoadsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetDateTimeLastSave_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDateTimeLastSave" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SetDateTimeLastSave_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDateTimeLastSaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteElement_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteElement" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteElement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteElements_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteElements" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteElements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteElementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteNodeWithElements_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteNodeWithElements" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteNodeWithElements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteNodeWithElementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteNodesWithElements_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteNodesWithElements" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteNodesWithElements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteNodesWithElementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddLineSectionsToLineByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLineSectionsToLineByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddLineSectionsToLineByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLineSectionsToLineByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddLineSectionsToLinesByNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLineSectionsToLinesByNames" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddLineSectionsToLinesByNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLineSectionsToLinesByNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddLineSectionsToLineByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLineSectionsToLineByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddLineSectionsToLineByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLineSectionsToLineByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddLineSectionsToLinesByIDs_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLineSectionsToLinesByIDs" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_AddLineSectionsToLinesByIDs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLineSectionsToLinesByIDsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteLineSectionsFromLineByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLineSectionsFromLineByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteLineSectionsFromLineByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLineSectionsFromLineByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteLineSectionsFromLinesByNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLineSectionsFromLinesByNames" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteLineSectionsFromLinesByNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLineSectionsFromLinesByNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteLineSectionsFromLineByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLineSectionsFromLineByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteLineSectionsFromLineByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLineSectionsFromLineByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteLineSectionsFromLinesByIDs_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLineSectionsFromLinesByIDs" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_DeleteLineSectionsFromLinesByIDs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLineSectionsFromLinesByIDsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateLineSectionsOfLineByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLineSectionsOfLineByName" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateLineSectionsOfLineByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLineSectionsOfLineByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateLineSectionsOfLinesByNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLineSectionsOfLinesByNames" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateLineSectionsOfLinesByNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLineSectionsOfLinesByNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateLineSectionsOfLineByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLineSectionsOfLineByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateLineSectionsOfLineByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLineSectionsOfLineByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateLineSectionsOfLinesByIDs_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLineSectionsOfLinesByIDs" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_UpdateLineSectionsOfLinesByIDs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLineSectionsOfLinesByIDsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLineSectionsOfLinesByNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLineSectionsOfLinesByNames" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLineSectionsOfLinesByNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLineSectionsOfLinesByNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLineSectionsOfLinesByIDs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLineSectionsOfLinesByIDs" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetLineSectionsOfLinesByIDs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLineSectionsOfLinesByIDsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetParameterOfLineSectionsFromLinesByNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetParameterOfLineSectionsFromLinesByNames" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetParameterOfLineSectionsFromLinesByNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetParameterOfLineSectionsFromLinesByNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetParameterOfLineSectionsFromLinesByIDs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetParameterOfLineSectionsFromLinesByIDs" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetParameterOfLineSectionsFromLinesByIDs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetParameterOfLineSectionsFromLinesByIDsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SwitchElementAtPortByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:SwitchElementAtPortByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SwitchElementAtPortByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SwitchElementAtPortByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SwitchElementAtPort_InputMessage">
+    <wsdl:part name="parameters" element="tns:SwitchElementAtPort" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_SwitchElementAtPort_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SwitchElementAtPortResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetSwitchOfElementAtPort_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSwitchOfElementAtPort" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetSwitchOfElementAtPort_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSwitchOfElementAtPortResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetSwitchOfElementAtPortByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSwitchOfElementAtPortByID" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetSwitchOfElementAtPortByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSwitchOfElementAtPortByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsWithOpenSwitch_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsWithOpenSwitch" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementsWithOpenSwitch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementsWithOpenSwitchResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetResultSummary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultSummary" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetResultSummary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResultSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetListResultSummary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListResultSummary" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetListResultSummary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListResultSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementResults" />
+  </wsdl:message>
+  <wsdl:message name="NeplanService_GetAllElementResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllElementResultsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="NeplanService">
+    <wsdl:operation name="GetResultElementByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetResultElementByID" message="tns:NeplanService_GetResultElementByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetResultElementByIDResponse" message="tns:NeplanService_GetResultElementByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResultsElementsByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetResultsElementsByID" message="tns:NeplanService_GetResultsElementsByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetResultsElementsByIDResponse" message="tns:NeplanService_GetResultsElementsByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResultElementByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetResultElementByName" message="tns:NeplanService_GetResultElementByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetResultElementByNameResponse" message="tns:NeplanService_GetResultElementByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeasibilityResults">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetFeasibilityResults" message="tns:NeplanService_GetFeasibilityResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetFeasibilityResultsResponse" message="tns:NeplanService_GetFeasibilityResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResultOfElements">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetResultOfElements" message="tns:NeplanService_GetResultOfElements_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetResultOfElementsResponse" message="tns:NeplanService_GetResultOfElements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResults">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetResults" message="tns:NeplanService_GetResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetResultsResponse" message="tns:NeplanService_GetResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AnalyseVariantWithAnalysisSettings">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AnalyseVariantWithAnalysisSettings" message="tns:NeplanService_AnalyseVariantWithAnalysisSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AnalyseVariantWithAnalysisSettingsResponse" message="tns:NeplanService_AnalyseVariantWithAnalysisSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AnalyseVariant">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AnalyseVariant" message="tns:NeplanService_AnalyseVariant_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AnalyseVariantResponse" message="tns:NeplanService_AnalyseVariant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAnalysisDone">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/IsAnalysisDone" message="tns:NeplanService_IsAnalysisDone_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/IsAnalysisDoneResponse" message="tns:NeplanService_IsAnalysisDone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoAnalysisFromFiles">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DoAnalysisFromFiles" message="tns:NeplanService_DoAnalysisFromFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DoAnalysisFromFilesResponse" message="tns:NeplanService_DoAnalysisFromFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnergyCalculationFromFiles">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/EnergyCalculationFromFiles" message="tns:NeplanService_EnergyCalculationFromFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/EnergyCalculationFromFilesResponse" message="tns:NeplanService_EnergyCalculationFromFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadAllocationFromDB">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/LoadAllocationFromDB" message="tns:NeplanService_LoadAllocationFromDB_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/LoadAllocationFromDBResponse" message="tns:NeplanService_LoadAllocationFromDB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadAllocationFromMeasurmentFileAndProjectName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/LoadAllocationFromMeasurmentFileAndProjectName" message="tns:NeplanService_LoadAllocationFromMeasurmentFileAndProjectName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/LoadAllocationFromMeasurmentFileAndProjectNameResponse" message="tns:NeplanService_LoadAllocationFromMeasurmentFileAndProjectName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadAllocationFromMeasurmentFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/LoadAllocationFromMeasurmentFile" message="tns:NeplanService_LoadAllocationFromMeasurmentFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/LoadAllocationFromMeasurmentFileResponse" message="tns:NeplanService_LoadAllocationFromMeasurmentFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromListFileAndDoLoadAllocation">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromListFileAndDoLoadAllocation" message="tns:NeplanService_ImportFromListFileAndDoLoadAllocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromListFileAndDoLoadAllocationResponse" message="tns:NeplanService_ImportFromListFileAndDoLoadAllocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AreCalculationResultsValid">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AreCalculationResultsValid" message="tns:NeplanService_AreCalculationResultsValid_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AreCalculationResultsValidResponse" message="tns:NeplanService_AreCalculationResultsValid_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartAnalysis">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/StartAnalysis" message="tns:NeplanService_StartAnalysis_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/StartAnalysisResponse" message="tns:NeplanService_StartAnalysis_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StopAnalysis">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/StopAnalysis" message="tns:NeplanService_StopAnalysis_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/StopAnalysisResponse" message="tns:NeplanService_StopAnalysis_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAnaylsisLogFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteAnaylsisLogFile" message="tns:NeplanService_DeleteAnaylsisLogFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteAnaylsisLogFileResponse" message="tns:NeplanService_DeleteAnaylsisLogFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAnalysisResultFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteAnalysisResultFile" message="tns:NeplanService_DeleteAnalysisResultFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteAnalysisResultFileResponse" message="tns:NeplanService_DeleteAnalysisResultFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteProject" message="tns:NeplanService_DeleteProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteProjectResponse" message="tns:NeplanService_DeleteProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkedProjectAsDeleted">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/MarkedProjectAsDeleted" message="tns:NeplanService_MarkedProjectAsDeleted_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/MarkedProjectAsDeletedResponse" message="tns:NeplanService_MarkedProjectAsDeleted_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="removeAllExpiredProjects">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/removeAllExpiredProjects" message="tns:NeplanService_removeAllExpiredProjects_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/removeAllExpiredProjectsResponse" message="tns:NeplanService_removeAllExpiredProjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="createDailyBackup">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/createDailyBackup" message="tns:NeplanService_createDailyBackup_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/createDailyBackupResponse" message="tns:NeplanService_createDailyBackup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromFile" message="tns:NeplanService_ImportFromFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromFileResponse" message="tns:NeplanService_ImportFromFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFeederFromList">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddFeederFromList" message="tns:NeplanService_AddFeederFromList_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddFeederFromListResponse" message="tns:NeplanService_AddFeederFromList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromList">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromList" message="tns:NeplanService_ImportFromList_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromListResponse" message="tns:NeplanService_ImportFromList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromListFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromListFile" message="tns:NeplanService_ImportFromListFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromListFileResponse" message="tns:NeplanService_ImportFromListFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MergeProjectFromListFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/MergeProjectFromListFile" message="tns:NeplanService_MergeProjectFromListFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/MergeProjectFromListFileResponse" message="tns:NeplanService_MergeProjectFromListFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromCDE">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromCDE" message="tns:NeplanService_ImportFromCDE_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromCDEResponse" message="tns:NeplanService_ImportFromCDE_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromCDEFiles">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromCDEFiles" message="tns:NeplanService_ImportFromCDEFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromCDEFilesResponse" message="tns:NeplanService_ImportFromCDEFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromCDEZipFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromCDEZipFile" message="tns:NeplanService_ImportFromCDEZipFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromCDEZipFileResponse" message="tns:NeplanService_ImportFromCDEZipFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromPSSEFiles">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromPSSEFiles" message="tns:NeplanService_ImportFromPSSEFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromPSSEFilesResponse" message="tns:NeplanService_ImportFromPSSEFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromPSSEZipFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromPSSEZipFile" message="tns:NeplanService_ImportFromPSSEZipFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromPSSEZipFileResponse" message="tns:NeplanService_ImportFromPSSEZipFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromShapeFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromShapeFile" message="tns:NeplanService_ImportFromShapeFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromShapeFileResponse" message="tns:NeplanService_ImportFromShapeFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFromNDB">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromNDB" message="tns:NeplanService_ImportFromNDB_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportFromNDBResponse" message="tns:NeplanService_ImportFromNDB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportMeasuredDataFromXMlFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportMeasuredDataFromXMlFile" message="tns:NeplanService_ImportMeasuredDataFromXMlFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportMeasuredDataFromXMlFileResponse" message="tns:NeplanService_ImportMeasuredDataFromXMlFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportNepOper">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportNepOper" message="tns:NeplanService_ImportNepOper_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportNepOperResponse" message="tns:NeplanService_ImportNepOper_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetElevationToAllNodes">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElevationToAllNodes" message="tns:NeplanService_SetElevationToAllNodes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElevationToAllNodesResponse" message="tns:NeplanService_SetElevationToAllNodes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportProjectToNEP360">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ExportProjectToNEP360" message="tns:NeplanService_ExportProjectToNEP360_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ExportProjectToNEP360Response" message="tns:NeplanService_ExportProjectToNEP360_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteMessageToLogFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/WriteMessageToLogFile" message="tns:NeplanService_WriteMessageToLogFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/WriteMessageToLogFileResponse" message="tns:NeplanService_WriteMessageToLogFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserLogFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteUserLogFile" message="tns:NeplanService_DeleteUserLogFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteUserLogFileResponse" message="tns:NeplanService_DeleteUserLogFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFileAsString">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLogFileAsString" message="tns:NeplanService_GetLogFileAsString_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLogFileAsStringResponse" message="tns:NeplanService_GetLogFileAsString_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFileAsList">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLogFileAsList" message="tns:NeplanService_GetLogFileAsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLogFileAsListResponse" message="tns:NeplanService_GetLogFileAsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TextUpload">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/TextUpload" message="tns:NeplanService_TextUpload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/TextUploadResponse" message="tns:NeplanService_TextUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="XMLUpload">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/XMLUpload" message="tns:NeplanService_XMLUpload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/XMLUploadResponse" message="tns:NeplanService_XMLUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CDEUpload">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/CDEUpload" message="tns:NeplanService_CDEUpload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/CDEUploadResponse" message="tns:NeplanService_CDEUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NDBUpload">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/NDBUpload" message="tns:NeplanService_NDBUpload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/NDBUploadResponse" message="tns:NeplanService_NDBUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NepOperUpload">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/NepOperUpload" message="tns:NeplanService_NepOperUpload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/NepOperUploadResponse" message="tns:NeplanService_NepOperUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Nep360Upload">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/Nep360Upload" message="tns:NeplanService_Nep360Upload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/Nep360UploadResponse" message="tns:NeplanService_Nep360Upload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ZipUpload">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ZipUpload" message="tns:NeplanService_ZipUpload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ZipUploadResponse" message="tns:NeplanService_ZipUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UCTUpload">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UCTUpload" message="tns:NeplanService_UCTUpload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UCTUploadResponse" message="tns:NeplanService_UCTUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NepMeasUpload">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/NepMeasUpload" message="tns:NeplanService_NepMeasUpload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/NepMeasUploadResponse" message="tns:NeplanService_NepMeasUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLogFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetUserLogFile" message="tns:NeplanService_GetUserLogFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetUserLogFileResponse" message="tns:NeplanService_GetUserLogFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnaylsisLogFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAnaylsisLogFile" message="tns:NeplanService_GetAnaylsisLogFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAnaylsisLogFileResponse" message="tns:NeplanService_GetAnaylsisLogFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnalysisResultFile">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAnalysisResultFile" message="tns:NeplanService_GetAnalysisResultFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAnalysisResultFileResponse" message="tns:NeplanService_GetAnalysisResultFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNamesOfElementsByType">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetNamesOfElementsByType" message="tns:NeplanService_GetNamesOfElementsByType_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetNamesOfElementsByTypeResponse" message="tns:NeplanService_GetNamesOfElementsByType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindSwitchStatusOfElements">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/FindSwitchStatusOfElements" message="tns:NeplanService_FindSwitchStatusOfElements_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/FindSwitchStatusOfElementsResponse" message="tns:NeplanService_FindSwitchStatusOfElements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Find_Voltage_Level_of_One_Port_Element">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/Find_Voltage_Level_of_One_Port_Element" message="tns:NeplanService_Find_Voltage_Level_of_One_Port_Element_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/Find_Voltage_Level_of_One_Port_ElementResponse" message="tns:NeplanService_Find_Voltage_Level_of_One_Port_Element_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBusBarOf1PortElementByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetBusBarOf1PortElementByID" message="tns:NeplanService_GetBusBarOf1PortElementByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetBusBarOf1PortElementByIDResponse" message="tns:NeplanService_GetBusBarOf1PortElementByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBusBarOf1PortElementByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetBusBarOf1PortElementByName" message="tns:NeplanService_GetBusBarOf1PortElementByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetBusBarOf1PortElementByNameResponse" message="tns:NeplanService_GetBusBarOf1PortElementByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeSwitchStatusOfElements">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ChangeSwitchStatusOfElements" message="tns:NeplanService_ChangeSwitchStatusOfElements_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ChangeSwitchStatusOfElementsResponse" message="tns:NeplanService_ChangeSwitchStatusOfElements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPQValuesLdSmAsm">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetPQValuesLdSmAsm" message="tns:NeplanService_GetPQValuesLdSmAsm_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetPQValuesLdSmAsmResponse" message="tns:NeplanService_GetPQValuesLdSmAsm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPowerofLoadsGenerators">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetPowerofLoadsGenerators" message="tns:NeplanService_SetPowerofLoadsGenerators_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetPowerofLoadsGeneratorsResponse" message="tns:NeplanService_SetPowerofLoadsGenerators_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeSwitchStatusOfElementList">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ChangeSwitchStatusOfElementList" message="tns:NeplanService_ChangeSwitchStatusOfElementList_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ChangeSwitchStatusOfElementListResponse" message="tns:NeplanService_ChangeSwitchStatusOfElementList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportIEC_62325_451_2FilesAndDoCIMExport">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportIEC_62325_451_2FilesAndDoCIMExport" message="tns:NeplanService_ImportIEC_62325_451_2FilesAndDoCIMExport_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ImportIEC_62325_451_2FilesAndDoCIMExportResponse" message="tns:NeplanService_ImportIEC_62325_451_2FilesAndDoCIMExport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RunEMFProcess">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/RunEMFProcess" message="tns:NeplanService_RunEMFProcess_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/RunEMFProcessResponse" message="tns:NeplanService_RunEMFProcess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RunCIMExportTranselectrica">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/RunCIMExportTranselectrica" message="tns:NeplanService_RunCIMExportTranselectrica_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/RunCIMExportTranselectricaResponse" message="tns:NeplanService_RunCIMExportTranselectrica_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeederIDByNames">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetFeederIDByNames" message="tns:NeplanService_GetFeederIDByNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetFeederIDByNamesResponse" message="tns:NeplanService_GetFeederIDByNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIDByFeederNames">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetIDByFeederNames" message="tns:NeplanService_GetIDByFeederNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetIDByFeederNamesResponse" message="tns:NeplanService_GetIDByFeederNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFeeders">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllFeeders" message="tns:NeplanService_GetAllFeeders_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllFeedersResponse" message="tns:NeplanService_GetAllFeeders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeederNameByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetFeederNameByID" message="tns:NeplanService_GetFeederNameByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetFeederNameByIDResponse" message="tns:NeplanService_GetFeederNameByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeederIDByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetFeederIDByName" message="tns:NeplanService_GetFeederIDByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetFeederIDByNameResponse" message="tns:NeplanService_GetFeederIDByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeederDataByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetFeederDataByName" message="tns:NeplanService_GetFeederDataByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetFeederDataByNameResponse" message="tns:NeplanService_GetFeederDataByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeederDataByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetFeederDataByID" message="tns:NeplanService_GetFeederDataByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetFeederDataByIDResponse" message="tns:NeplanService_GetFeederDataByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetFeederData">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetFeederData" message="tns:NeplanService_SetFeederData_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetFeederDataResponse" message="tns:NeplanService_SetFeederData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFeeders">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteFeeders" message="tns:NeplanService_DeleteFeeders_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteFeedersResponse" message="tns:NeplanService_DeleteFeeders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopologyInformationOfElements">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetTopologyInformationOfElements" message="tns:NeplanService_GetTopologyInformationOfElements_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetTopologyInformationOfElementsResponse" message="tns:NeplanService_GetTopologyInformationOfElements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAreas">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllAreas" message="tns:NeplanService_GetAllAreas_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllAreasResponse" message="tns:NeplanService_GetAllAreas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAreaEICs">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllAreaEICs" message="tns:NeplanService_GetAllAreaEICs_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllAreaEICsResponse" message="tns:NeplanService_GetAllAreaEICs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAreasEICs">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetAreasEICs" message="tns:NeplanService_SetAreasEICs_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetAreasEICsResponse" message="tns:NeplanService_SetAreasEICs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSubAreas">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllSubAreas" message="tns:NeplanService_GetAllSubAreas_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllSubAreasResponse" message="tns:NeplanService_GetAllSubAreas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubAreaNameByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetSubAreaNameByID" message="tns:NeplanService_GetSubAreaNameByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetSubAreaNameByIDResponse" message="tns:NeplanService_GetSubAreaNameByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubAreaIDByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetSubAreaIDByName" message="tns:NeplanService_GetSubAreaIDByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetSubAreaIDByNameResponse" message="tns:NeplanService_GetSubAreaIDByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllZones">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllZones" message="tns:NeplanService_GetAllZones_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllZonesResponse" message="tns:NeplanService_GetAllZones_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllZoneEICs">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllZoneEICs" message="tns:NeplanService_GetAllZoneEICs_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllZoneEICsResponse" message="tns:NeplanService_GetAllZoneEICs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZoneNameByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetZoneNameByID" message="tns:NeplanService_GetZoneNameByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetZoneNameByIDResponse" message="tns:NeplanService_GetZoneNameByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZoneIDByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetZoneIDByName" message="tns:NeplanService_GetZoneIDByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetZoneIDByNameResponse" message="tns:NeplanService_GetZoneIDByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZoneFactorsByPropertyNames">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetZoneFactorsByPropertyNames" message="tns:NeplanService_GetZoneFactorsByPropertyNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetZoneFactorsByPropertyNamesResponse" message="tns:NeplanService_GetZoneFactorsByPropertyNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetZoneFactorsByPropertyNames">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetZoneFactorsByPropertyNames" message="tns:NeplanService_SetZoneFactorsByPropertyNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetZoneFactorsByPropertyNamesResponse" message="tns:NeplanService_SetZoneFactorsByPropertyNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CIMImport">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/CIMImport" message="tns:NeplanService_CIMImport_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/CIMImportResponse" message="tns:NeplanService_CIMImport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CIMUpdateSSHData">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/CIMUpdateSSHData" message="tns:NeplanService_CIMUpdateSSHData_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/CIMUpdateSSHDataResponse" message="tns:NeplanService_CIMUpdateSSHData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCGMESModel">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ValidateCGMESModel" message="tns:NeplanService_ValidateCGMESModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/ValidateCGMESModelResponse" message="tns:NeplanService_ValidateCGMESModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CIMExport">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/CIMExport" message="tns:NeplanService_CIMExport_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/CIMExportResponse" message="tns:NeplanService_CIMExport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNeplanIDtoCimIDDictionary">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetNeplanIDtoCimIDDictionary" message="tns:NeplanService_GetNeplanIDtoCimIDDictionary_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetNeplanIDtoCimIDDictionaryResponse" message="tns:NeplanService_GetNeplanIDtoCimIDDictionary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDataToTimeDependentCurves">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddDataToTimeDependentCurves" message="tns:NeplanService_AddDataToTimeDependentCurves_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddDataToTimeDependentCurvesResponse" message="tns:NeplanService_AddDataToTimeDependentCurves_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNeplanIDtoEICodeDictionary">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetNeplanIDtoEICodeDictionary" message="tns:NeplanService_GetNeplanIDtoEICodeDictionary_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetNeplanIDtoEICodeDictionaryResponse" message="tns:NeplanService_GetNeplanIDtoEICodeDictionary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUpdateTopologyOperStateForElement">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddUpdateTopologyOperStateForElement" message="tns:NeplanService_AddUpdateTopologyOperStateForElement_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddUpdateTopologyOperStateForElementResponse" message="tns:NeplanService_AddUpdateTopologyOperStateForElement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTopologyOperStateForElements">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteTopologyOperStateForElements" message="tns:NeplanService_DeleteTopologyOperStateForElements_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteTopologyOperStateForElementsResponse" message="tns:NeplanService_DeleteTopologyOperStateForElements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUpdateOperStateForElement">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddUpdateOperStateForElement" message="tns:NeplanService_AddUpdateOperStateForElement_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddUpdateOperStateForElementResponse" message="tns:NeplanService_AddUpdateOperStateForElement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllElementsWithOperationalStates">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsWithOperationalStates" message="tns:NeplanService_GetAllElementsWithOperationalStates_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsWithOperationalStatesResponse" message="tns:NeplanService_GetAllElementsWithOperationalStates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOperationalState">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteOperationalState" message="tns:NeplanService_DeleteOperationalState_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteOperationalStateResponse" message="tns:NeplanService_DeleteOperationalState_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOperationalStateForItems">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteOperationalStateForItems" message="tns:NeplanService_DeleteOperationalStateForItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteOperationalStateForItemsResponse" message="tns:NeplanService_DeleteOperationalStateForItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOperationalStateNames">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetOperationalStateNames" message="tns:NeplanService_GetOperationalStateNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetOperationalStateNamesResponse" message="tns:NeplanService_GetOperationalStateNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllOperationalStates">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteAllOperationalStates" message="tns:NeplanService_DeleteAllOperationalStates_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteAllOperationalStatesResponse" message="tns:NeplanService_DeleteAllOperationalStates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrUpdateElementTimeDependentCurvePoints">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetOrUpdateElementTimeDependentCurvePoints" message="tns:NeplanService_SetOrUpdateElementTimeDependentCurvePoints_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetOrUpdateElementTimeDependentCurvePointsResponse" message="tns:NeplanService_SetOrUpdateElementTimeDependentCurvePoints_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetElementCalcSettingForCalcParameter">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementCalcSettingForCalcParameter" message="tns:NeplanService_SetElementCalcSettingForCalcParameter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementCalcSettingForCalcParameterResponse" message="tns:NeplanService_SetElementCalcSettingForCalcParameter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementCalcSettingForCalcParameter">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementCalcSettingForCalcParameter" message="tns:NeplanService_GetElementCalcSettingForCalcParameter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementCalcSettingForCalcParameterResponse" message="tns:NeplanService_GetElementCalcSettingForCalcParameter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetShortCircuitLocations">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetShortCircuitLocations" message="tns:NeplanService_SetShortCircuitLocations_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetShortCircuitLocationsResponse" message="tns:NeplanService_SetShortCircuitLocations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShortCircuitLocations">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetShortCircuitLocations" message="tns:NeplanService_GetShortCircuitLocations_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetShortCircuitLocationsResponse" message="tns:NeplanService_GetShortCircuitLocations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCommonModesForAnalysisType">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetCommonModesForAnalysisType" message="tns:NeplanService_SetCommonModesForAnalysisType_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetCommonModesForAnalysisTypeResponse" message="tns:NeplanService_SetCommonModesForAnalysisType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommonModesForAnalysisType">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCommonModesForAnalysisType" message="tns:NeplanService_GetCommonModesForAnalysisType_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCommonModesForAnalysisTypeResponse" message="tns:NeplanService_GetCommonModesForAnalysisType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCommonModesForAnalysisType">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteCommonModesForAnalysisType" message="tns:NeplanService_DeleteCommonModesForAnalysisType_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteCommonModesForAnalysisTypeResponse" message="tns:NeplanService_DeleteCommonModesForAnalysisType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateElementLibrary">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateElementLibrary" message="tns:NeplanService_UpdateElementLibrary_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateElementLibraryResponse" message="tns:NeplanService_UpdateElementLibrary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateElementsLibrary">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateElementsLibrary" message="tns:NeplanService_UpdateElementsLibrary_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateElementsLibraryResponse" message="tns:NeplanService_UpdateElementsLibrary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateProject">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/CreateProject" message="tns:NeplanService_CreateProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/CreateProjectResponse" message="tns:NeplanService_CreateProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProject">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetProject" message="tns:NeplanService_GetProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetProjectResponse" message="tns:NeplanService_GetProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveProjectAs">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SaveProjectAs" message="tns:NeplanService_SaveProjectAs_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SaveProjectAsResponse" message="tns:NeplanService_SaveProjectAs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjects">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetProjects" message="tns:NeplanService_GetProjects_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetProjectsResponse" message="tns:NeplanService_GetProjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetScenarios">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetScenarios" message="tns:NeplanService_GetScenarios_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetScenariosResponse" message="tns:NeplanService_GetScenarios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogOnUrlWithProject">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLogOnUrlWithProject" message="tns:NeplanService_GetLogOnUrlWithProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLogOnUrlWithProjectResponse" message="tns:NeplanService_GetLogOnUrlWithProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogOnUrl">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLogOnUrl" message="tns:NeplanService_GetLogOnUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLogOnUrlResponse" message="tns:NeplanService_GetLogOnUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogOnSessionID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLogOnSessionID" message="tns:NeplanService_GetLogOnSessionID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLogOnSessionIDResponse" message="tns:NeplanService_GetLogOnSessionID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCustomerTypeDefinition">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddCustomerTypeDefinition" message="tns:NeplanService_AddCustomerTypeDefinition_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddCustomerTypeDefinitionResponse" message="tns:NeplanService_AddCustomerTypeDefinition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCustomerTypeDefinition">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/RemoveCustomerTypeDefinition" message="tns:NeplanService_RemoveCustomerTypeDefinition_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/RemoveCustomerTypeDefinitionResponse" message="tns:NeplanService_RemoveCustomerTypeDefinition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerTypeDefinitions">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCustomerTypeDefinitions" message="tns:NeplanService_GetCustomerTypeDefinitions_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCustomerTypeDefinitionsResponse" message="tns:NeplanService_GetCustomerTypeDefinitions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertGasNode">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertGasNode" message="tns:NeplanService_InsertGasNode_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertGasNodeResponse" message="tns:NeplanService_InsertGasNode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertNode">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertNode" message="tns:NeplanService_InsertNode_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertNodeResponse" message="tns:NeplanService_InsertNode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertNodeWithoutGraphic">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertNodeWithoutGraphic" message="tns:NeplanService_InsertNodeWithoutGraphic_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertNodeWithoutGraphicResponse" message="tns:NeplanService_InsertNodeWithoutGraphic_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertBusbar">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertBusbar" message="tns:NeplanService_InsertBusbar_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertBusbarResponse" message="tns:NeplanService_InsertBusbar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertLine">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertLine" message="tns:NeplanService_InsertLine_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertLineResponse" message="tns:NeplanService_InsertLine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertLineByNodeID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertLineByNodeID" message="tns:NeplanService_InsertLineByNodeID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertLineByNodeIDResponse" message="tns:NeplanService_InsertLineByNodeID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertLineAsym">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertLineAsym" message="tns:NeplanService_InsertLineAsym_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertLineAsymResponse" message="tns:NeplanService_InsertLineAsym_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert2PortElement">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/Insert2PortElement" message="tns:NeplanService_Insert2PortElement_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/Insert2PortElementResponse" message="tns:NeplanService_Insert2PortElement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert1PortElement">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/Insert1PortElement" message="tns:NeplanService_Insert1PortElement_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/Insert1PortElementResponse" message="tns:NeplanService_Insert1PortElement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertProtectionElement">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertProtectionElement" message="tns:NeplanService_InsertProtectionElement_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertProtectionElementResponse" message="tns:NeplanService_InsertProtectionElement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertFeeder">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertFeeder" message="tns:NeplanService_InsertFeeder_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertFeederResponse" message="tns:NeplanService_InsertFeeder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertArea">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertArea" message="tns:NeplanService_InsertArea_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertAreaResponse" message="tns:NeplanService_InsertArea_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertZone">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertZone" message="tns:NeplanService_InsertZone_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertZoneResponse" message="tns:NeplanService_InsertZone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertMeasurement">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertMeasurement" message="tns:NeplanService_InsertMeasurement_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertMeasurementResponse" message="tns:NeplanService_InsertMeasurement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertMeasurementByElementID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertMeasurementByElementID" message="tns:NeplanService_InsertMeasurementByElementID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertMeasurementByElementIDResponse" message="tns:NeplanService_InsertMeasurementByElementID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMeasurementForElement">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteMeasurementForElement" message="tns:NeplanService_DeleteMeasurementForElement_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteMeasurementForElementResponse" message="tns:NeplanService_DeleteMeasurementForElement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMeasurementDefinitionForProject">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteMeasurementDefinitionForProject" message="tns:NeplanService_DeleteMeasurementDefinitionForProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteMeasurementDefinitionForProjectResponse" message="tns:NeplanService_DeleteMeasurementDefinitionForProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMeasurementDefinitionForProject">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetMeasurementDefinitionForProject" message="tns:NeplanService_GetMeasurementDefinitionForProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetMeasurementDefinitionForProjectResponse" message="tns:NeplanService_GetMeasurementDefinitionForProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDiagram">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertDiagram" message="tns:NeplanService_InsertDiagram_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertDiagramResponse" message="tns:NeplanService_InsertDiagram_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertGraphicLayer">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertGraphicLayer" message="tns:NeplanService_InsertGraphicLayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertGraphicLayerResponse" message="tns:NeplanService_InsertGraphicLayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertGraphicLayers">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertGraphicLayers" message="tns:NeplanService_InsertGraphicLayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/InsertGraphicLayersResponse" message="tns:NeplanService_InsertGraphicLayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGraphicLayers">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateGraphicLayers" message="tns:NeplanService_UpdateGraphicLayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateGraphicLayersResponse" message="tns:NeplanService_UpdateGraphicLayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCalcParameterAttribute">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetCalcParameterAttribute" message="tns:NeplanService_SetCalcParameterAttribute_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetCalcParameterAttributeResponse" message="tns:NeplanService_SetCalcParameterAttribute_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAttributeForCalcParameter">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetAttributeForCalcParameter" message="tns:NeplanService_SetAttributeForCalcParameter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetAttributeForCalcParameterResponse" message="tns:NeplanService_SetAttributeForCalcParameter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalcParameterAttributes">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCalcParameterAttributes" message="tns:NeplanService_GetCalcParameterAttributes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCalcParameterAttributesResponse" message="tns:NeplanService_GetCalcParameterAttributes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalcParameterAttributesDescription">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCalcParameterAttributesDescription" message="tns:NeplanService_GetCalcParameterAttributesDescription_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCalcParameterAttributesDescriptionResponse" message="tns:NeplanService_GetCalcParameterAttributesDescription_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOptimalPowerFlowObjectiveFunction">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetOptimalPowerFlowObjectiveFunction" message="tns:NeplanService_SetOptimalPowerFlowObjectiveFunction_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetOptimalPowerFlowObjectiveFunctionResponse" message="tns:NeplanService_SetOptimalPowerFlowObjectiveFunction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadOutagesForContigency">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/LoadOutagesForContigency" message="tns:NeplanService_LoadOutagesForContigency_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/LoadOutagesForContigencyResponse" message="tns:NeplanService_LoadOutagesForContigency_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOptimalPowerFlowInterfaces">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddOptimalPowerFlowInterfaces" message="tns:NeplanService_AddOptimalPowerFlowInterfaces_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddOptimalPowerFlowInterfacesResponse" message="tns:NeplanService_AddOptimalPowerFlowInterfaces_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOptimalPowerFlowInterfaces">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetOptimalPowerFlowInterfaces" message="tns:NeplanService_GetOptimalPowerFlowInterfaces_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetOptimalPowerFlowInterfacesResponse" message="tns:NeplanService_GetOptimalPowerFlowInterfaces_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOptimalPowerFlowInterfaces">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteOptimalPowerFlowInterfaces" message="tns:NeplanService_DeleteOptimalPowerFlowInterfaces_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteOptimalPowerFlowInterfacesResponse" message="tns:NeplanService_DeleteOptimalPowerFlowInterfaces_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDiagramNames">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllDiagramNames" message="tns:NeplanService_GetAllDiagramNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllDiagramNamesResponse" message="tns:NeplanService_GetAllDiagramNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoordinatesOfElement">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCoordinatesOfElement" message="tns:NeplanService_GetCoordinatesOfElement_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCoordinatesOfElementResponse" message="tns:NeplanService_GetCoordinatesOfElement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoordinatesOfElementByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCoordinatesOfElementByName" message="tns:NeplanService_GetCoordinatesOfElementByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCoordinatesOfElementByNameResponse" message="tns:NeplanService_GetCoordinatesOfElementByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoordinatesOfAllElements">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCoordinatesOfAllElements" message="tns:NeplanService_GetCoordinatesOfAllElements_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetCoordinatesOfAllElementsResponse" message="tns:NeplanService_GetCoordinatesOfAllElements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementAtPort">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAtPort" message="tns:NeplanService_GetElementAtPort_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAtPortResponse" message="tns:NeplanService_GetElementAtPort_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementAtPortByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAtPortByID" message="tns:NeplanService_GetElementAtPortByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAtPortByIDResponse" message="tns:NeplanService_GetElementAtPortByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementAtPortIDs">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAtPortIDs" message="tns:NeplanService_GetElementAtPortIDs_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAtPortIDsResponse" message="tns:NeplanService_GetElementAtPortIDs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGraphicLayersForElementByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetGraphicLayersForElementByID" message="tns:NeplanService_GetGraphicLayersForElementByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetGraphicLayersForElementByIDResponse" message="tns:NeplanService_GetGraphicLayersForElementByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllElementsOfProject">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsOfProject" message="tns:NeplanService_GetAllElementsOfProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsOfProjectResponse" message="tns:NeplanService_GetAllElementsOfProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllElementsOfElementType">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsOfElementType" message="tns:NeplanService_GetAllElementsOfElementType_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsOfElementTypeResponse" message="tns:NeplanService_GetAllElementsOfElementType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllElementsOfArea">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsOfArea" message="tns:NeplanService_GetAllElementsOfArea_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsOfAreaResponse" message="tns:NeplanService_GetAllElementsOfArea_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllElementsOfFeeder">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsOfFeeder" message="tns:NeplanService_GetAllElementsOfFeeder_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsOfFeederResponse" message="tns:NeplanService_GetAllElementsOfFeeder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllElementsOfZone">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsOfZone" message="tns:NeplanService_GetAllElementsOfZone_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsOfZoneResponse" message="tns:NeplanService_GetAllElementsOfZone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSubLoad">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddSubLoad" message="tns:NeplanService_AddSubLoad_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddSubLoadResponse" message="tns:NeplanService_AddSubLoad_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AssignPowerTo1Port">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AssignPowerTo1Port" message="tns:NeplanService_AssignPowerTo1Port_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AssignPowerTo1PortResponse" message="tns:NeplanService_AssignPowerTo1Port_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AssignPowerTo1PortByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AssignPowerTo1PortByID" message="tns:NeplanService_AssignPowerTo1PortByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AssignPowerTo1PortByIDResponse" message="tns:NeplanService_AssignPowerTo1PortByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetElementData">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementData" message="tns:NeplanService_SetElementData_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementDataResponse" message="tns:NeplanService_SetElementData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetElementDataByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementDataByID" message="tns:NeplanService_SetElementDataByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementDataByIDResponse" message="tns:NeplanService_SetElementDataByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementDataByNameandType">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementDataByNameandType" message="tns:NeplanService_GetElementDataByNameandType_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementDataByNameandTypeResponse" message="tns:NeplanService_GetElementDataByNameandType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementDataByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementDataByName" message="tns:NeplanService_GetElementDataByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementDataByNameResponse" message="tns:NeplanService_GetElementDataByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementDataByIDandType">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementDataByIDandType" message="tns:NeplanService_GetElementDataByIDandType_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementDataByIDandTypeResponse" message="tns:NeplanService_GetElementDataByIDandType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectedElementsByElementID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetConnectedElementsByElementID" message="tns:NeplanService_GetConnectedElementsByElementID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetConnectedElementsByElementIDResponse" message="tns:NeplanService_GetConnectedElementsByElementID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetElementAttribute">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementAttribute" message="tns:NeplanService_SetElementAttribute_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementAttributeResponse" message="tns:NeplanService_SetElementAttribute_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetElementAttributeByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementAttributeByID" message="tns:NeplanService_SetElementAttributeByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementAttributeByIDResponse" message="tns:NeplanService_SetElementAttributeByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetElementAttributes">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementAttributes" message="tns:NeplanService_SetElementAttributes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementAttributesResponse" message="tns:NeplanService_SetElementAttributes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetElementListAttributeByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementListAttributeByID" message="tns:NeplanService_SetElementListAttributeByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetElementListAttributeByIDResponse" message="tns:NeplanService_SetElementListAttributeByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementAttributeByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAttributeByID" message="tns:NeplanService_GetElementAttributeByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAttributeByIDResponse" message="tns:NeplanService_GetElementAttributeByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttributeByElementID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAttributeByElementID" message="tns:NeplanService_GetAttributeByElementID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAttributeByElementIDResponse" message="tns:NeplanService_GetAttributeByElementID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementListAttributeByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementListAttributeByID" message="tns:NeplanService_GetElementListAttributeByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementListAttributeByIDResponse" message="tns:NeplanService_GetElementListAttributeByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementAttributeListByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAttributeListByID" message="tns:NeplanService_GetElementAttributeListByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAttributeListByIDResponse" message="tns:NeplanService_GetElementAttributeListByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttributeListByElementID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAttributeListByElementID" message="tns:NeplanService_GetAttributeListByElementID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAttributeListByElementIDResponse" message="tns:NeplanService_GetAttributeListByElementID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementAttributeByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAttributeByName" message="tns:NeplanService_GetElementAttributeByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAttributeByNameResponse" message="tns:NeplanService_GetElementAttributeByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttributeByElementName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAttributeByElementName" message="tns:NeplanService_GetAttributeByElementName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAttributeByElementNameResponse" message="tns:NeplanService_GetAttributeByElementName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementAttributeListByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAttributeListByName" message="tns:NeplanService_GetElementAttributeListByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAttributeListByNameResponse" message="tns:NeplanService_GetElementAttributeListByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttributeListByElementName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAttributeListByElementName" message="tns:NeplanService_GetAttributeListByElementName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAttributeListByElementNameResponse" message="tns:NeplanService_GetAttributeListByElementName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElementAttributes">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAttributes" message="tns:NeplanService_GetElementAttributes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetElementAttributesResponse" message="tns:NeplanService_GetElementAttributes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShuntSwitchedAdmittanceBlocks">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetShuntSwitchedAdmittanceBlocks" message="tns:NeplanService_GetShuntSwitchedAdmittanceBlocks_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetShuntSwitchedAdmittanceBlocksResponse" message="tns:NeplanService_GetShuntSwitchedAdmittanceBlocks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetShuntSwitchedAdmittanceBlocks">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetShuntSwitchedAdmittanceBlocks" message="tns:NeplanService_SetShuntSwitchedAdmittanceBlocks_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetShuntSwitchedAdmittanceBlocksResponse" message="tns:NeplanService_SetShuntSwitchedAdmittanceBlocks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRegulatorParameter">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetRegulatorParameter" message="tns:NeplanService_SetRegulatorParameter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetRegulatorParameterResponse" message="tns:NeplanService_SetRegulatorParameter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRegulatorParameterByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetRegulatorParameterByID" message="tns:NeplanService_SetRegulatorParameterByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetRegulatorParameterByIDResponse" message="tns:NeplanService_SetRegulatorParameterByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegulatorParameterByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetRegulatorParameterByID" message="tns:NeplanService_GetRegulatorParameterByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetRegulatorParameterByIDResponse" message="tns:NeplanService_GetRegulatorParameterByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegulatorParameterListByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetRegulatorParameterListByID" message="tns:NeplanService_GetRegulatorParameterListByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetRegulatorParameterListByIDResponse" message="tns:NeplanService_GetRegulatorParameterListByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegulatorParameterByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetRegulatorParameterByName" message="tns:NeplanService_GetRegulatorParameterByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetRegulatorParameterByNameResponse" message="tns:NeplanService_GetRegulatorParameterByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegulatorParameterListByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetRegulatorParameterListByName" message="tns:NeplanService_GetRegulatorParameterListByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetRegulatorParameterListByNameResponse" message="tns:NeplanService_GetRegulatorParameterListByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddReadAllRoleToProject">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddReadAllRoleToProject" message="tns:NeplanService_AddReadAllRoleToProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddReadAllRoleToProjectResponse" message="tns:NeplanService_AddReadAllRoleToProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddVoltageLevel">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddVoltageLevel" message="tns:NeplanService_AddVoltageLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddVoltageLevelResponse" message="tns:NeplanService_AddVoltageLevel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDiagramMinValues">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetDiagramMinValues" message="tns:NeplanService_SetDiagramMinValues_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetDiagramMinValuesResponse" message="tns:NeplanService_SetDiagramMinValues_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetLineStyle">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetLineStyle" message="tns:NeplanService_SetLineStyle_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetLineStyleResponse" message="tns:NeplanService_SetLineStyle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultValues">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetDefaultValues" message="tns:NeplanService_SetDefaultValues_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetDefaultValuesResponse" message="tns:NeplanService_SetDefaultValues_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDiagramParameterAttribute">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetDiagramParameterAttribute" message="tns:NeplanService_SetDiagramParameterAttribute_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetDiagramParameterAttributeResponse" message="tns:NeplanService_SetDiagramParameterAttribute_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetGraphicLayerWorldCoordinates">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetGraphicLayerWorldCoordinates" message="tns:NeplanService_SetGraphicLayerWorldCoordinates_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetGraphicLayerWorldCoordinatesResponse" message="tns:NeplanService_SetGraphicLayerWorldCoordinates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNodesFromList">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddNodesFromList" message="tns:NeplanService_AddNodesFromList_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddNodesFromListResponse" message="tns:NeplanService_AddNodesFromList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddElementsFromList">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddElementsFromList" message="tns:NeplanService_AddElementsFromList_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddElementsFromListResponse" message="tns:NeplanService_AddElementsFromList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSubLoadsFromList">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddSubLoadsFromList" message="tns:NeplanService_AddSubLoadsFromList_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddSubLoadsFromListResponse" message="tns:NeplanService_AddSubLoadsFromList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSubLoads">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddSubLoads" message="tns:NeplanService_AddSubLoads_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddSubLoadsResponse" message="tns:NeplanService_AddSubLoads_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubLoadsFromMap">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetSubLoadsFromMap" message="tns:NeplanService_GetSubLoadsFromMap_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetSubLoadsFromMapResponse" message="tns:NeplanService_GetSubLoadsFromMap_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSubLoads">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteSubLoads" message="tns:NeplanService_DeleteSubLoads_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteSubLoadsResponse" message="tns:NeplanService_DeleteSubLoads_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDateTimeLastSave">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetDateTimeLastSave" message="tns:NeplanService_SetDateTimeLastSave_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SetDateTimeLastSaveResponse" message="tns:NeplanService_SetDateTimeLastSave_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteElement">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteElement" message="tns:NeplanService_DeleteElement_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteElementResponse" message="tns:NeplanService_DeleteElement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteElements">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteElements" message="tns:NeplanService_DeleteElements_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteElementsResponse" message="tns:NeplanService_DeleteElements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteNodeWithElements">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteNodeWithElements" message="tns:NeplanService_DeleteNodeWithElements_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteNodeWithElementsResponse" message="tns:NeplanService_DeleteNodeWithElements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteNodesWithElements">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteNodesWithElements" message="tns:NeplanService_DeleteNodesWithElements_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteNodesWithElementsResponse" message="tns:NeplanService_DeleteNodesWithElements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLineSectionsToLineByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddLineSectionsToLineByName" message="tns:NeplanService_AddLineSectionsToLineByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddLineSectionsToLineByNameResponse" message="tns:NeplanService_AddLineSectionsToLineByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLineSectionsToLinesByNames">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddLineSectionsToLinesByNames" message="tns:NeplanService_AddLineSectionsToLinesByNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddLineSectionsToLinesByNamesResponse" message="tns:NeplanService_AddLineSectionsToLinesByNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLineSectionsToLineByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddLineSectionsToLineByID" message="tns:NeplanService_AddLineSectionsToLineByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddLineSectionsToLineByIDResponse" message="tns:NeplanService_AddLineSectionsToLineByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLineSectionsToLinesByIDs">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddLineSectionsToLinesByIDs" message="tns:NeplanService_AddLineSectionsToLinesByIDs_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/AddLineSectionsToLinesByIDsResponse" message="tns:NeplanService_AddLineSectionsToLinesByIDs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLineSectionsFromLineByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteLineSectionsFromLineByName" message="tns:NeplanService_DeleteLineSectionsFromLineByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteLineSectionsFromLineByNameResponse" message="tns:NeplanService_DeleteLineSectionsFromLineByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLineSectionsFromLinesByNames">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteLineSectionsFromLinesByNames" message="tns:NeplanService_DeleteLineSectionsFromLinesByNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteLineSectionsFromLinesByNamesResponse" message="tns:NeplanService_DeleteLineSectionsFromLinesByNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLineSectionsFromLineByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteLineSectionsFromLineByID" message="tns:NeplanService_DeleteLineSectionsFromLineByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteLineSectionsFromLineByIDResponse" message="tns:NeplanService_DeleteLineSectionsFromLineByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLineSectionsFromLinesByIDs">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteLineSectionsFromLinesByIDs" message="tns:NeplanService_DeleteLineSectionsFromLinesByIDs_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/DeleteLineSectionsFromLinesByIDsResponse" message="tns:NeplanService_DeleteLineSectionsFromLinesByIDs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLineSectionsOfLineByName">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateLineSectionsOfLineByName" message="tns:NeplanService_UpdateLineSectionsOfLineByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateLineSectionsOfLineByNameResponse" message="tns:NeplanService_UpdateLineSectionsOfLineByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLineSectionsOfLinesByNames">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateLineSectionsOfLinesByNames" message="tns:NeplanService_UpdateLineSectionsOfLinesByNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateLineSectionsOfLinesByNamesResponse" message="tns:NeplanService_UpdateLineSectionsOfLinesByNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLineSectionsOfLineByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateLineSectionsOfLineByID" message="tns:NeplanService_UpdateLineSectionsOfLineByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateLineSectionsOfLineByIDResponse" message="tns:NeplanService_UpdateLineSectionsOfLineByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLineSectionsOfLinesByIDs">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateLineSectionsOfLinesByIDs" message="tns:NeplanService_UpdateLineSectionsOfLinesByIDs_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/UpdateLineSectionsOfLinesByIDsResponse" message="tns:NeplanService_UpdateLineSectionsOfLinesByIDs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLineSectionsOfLinesByNames">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLineSectionsOfLinesByNames" message="tns:NeplanService_GetLineSectionsOfLinesByNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLineSectionsOfLinesByNamesResponse" message="tns:NeplanService_GetLineSectionsOfLinesByNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLineSectionsOfLinesByIDs">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLineSectionsOfLinesByIDs" message="tns:NeplanService_GetLineSectionsOfLinesByIDs_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetLineSectionsOfLinesByIDsResponse" message="tns:NeplanService_GetLineSectionsOfLinesByIDs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParameterOfLineSectionsFromLinesByNames">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetParameterOfLineSectionsFromLinesByNames" message="tns:NeplanService_GetParameterOfLineSectionsFromLinesByNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetParameterOfLineSectionsFromLinesByNamesResponse" message="tns:NeplanService_GetParameterOfLineSectionsFromLinesByNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParameterOfLineSectionsFromLinesByIDs">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetParameterOfLineSectionsFromLinesByIDs" message="tns:NeplanService_GetParameterOfLineSectionsFromLinesByIDs_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetParameterOfLineSectionsFromLinesByIDsResponse" message="tns:NeplanService_GetParameterOfLineSectionsFromLinesByIDs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SwitchElementAtPortByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SwitchElementAtPortByID" message="tns:NeplanService_SwitchElementAtPortByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SwitchElementAtPortByIDResponse" message="tns:NeplanService_SwitchElementAtPortByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SwitchElementAtPort">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SwitchElementAtPort" message="tns:NeplanService_SwitchElementAtPort_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/SwitchElementAtPortResponse" message="tns:NeplanService_SwitchElementAtPort_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSwitchOfElementAtPort">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetSwitchOfElementAtPort" message="tns:NeplanService_GetSwitchOfElementAtPort_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetSwitchOfElementAtPortResponse" message="tns:NeplanService_GetSwitchOfElementAtPort_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSwitchOfElementAtPortByID">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetSwitchOfElementAtPortByID" message="tns:NeplanService_GetSwitchOfElementAtPortByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetSwitchOfElementAtPortByIDResponse" message="tns:NeplanService_GetSwitchOfElementAtPortByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllElementsWithOpenSwitch">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsWithOpenSwitch" message="tns:NeplanService_GetAllElementsWithOpenSwitch_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementsWithOpenSwitchResponse" message="tns:NeplanService_GetAllElementsWithOpenSwitch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResultSummary">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetResultSummary" message="tns:NeplanService_GetResultSummary_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetResultSummaryResponse" message="tns:NeplanService_GetResultSummary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListResultSummary">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetListResultSummary" message="tns:NeplanService_GetListResultSummary_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetListResultSummaryResponse" message="tns:NeplanService_GetListResultSummary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllElementResults">
+      <wsdl:input wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementResults" message="tns:NeplanService_GetAllElementResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.neplan.ch/Web/External/NeplanService/GetAllElementResultsResponse" message="tns:NeplanService_GetAllElementResults_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://BCP.ch/Neplan/Web/Models/TechData" elementFormDefault="qualified" targetNamespace="http://BCP.ch/Neplan/Web/Models/TechData" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.TechData" />
+  <xs:complexType name="ArrayOfSwitchedAdmittanceBlock">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SwitchedAdmittanceBlock" nillable="true" type="tns:SwitchedAdmittanceBlock" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSwitchedAdmittanceBlock" nillable="true" type="tns:ArrayOfSwitchedAdmittanceBlock" />
+  <xs:complexType name="SwitchedAdmittanceBlock">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.TechData" base="q1:NotifyBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NumberOfSteps" type="xs:int" />
+          <xs:element minOccurs="0" name="Q0Increment" type="xs:double" />
+          <xs:element minOccurs="0" name="Q1Increment" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SwitchedAdmittanceBlock" nillable="true" type="tns:SwitchedAdmittanceBlock" />
+</xs:schema>

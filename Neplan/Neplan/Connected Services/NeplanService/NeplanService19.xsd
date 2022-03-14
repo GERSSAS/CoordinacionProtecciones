@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services.ServiceControl" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Services.ServiceControl" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="ReturnCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Successfull" />
+      <xs:enumeration value="Error" />
+      <xs:enumeration value="Warning" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ReturnCode" nillable="true" type="tns:ReturnCode" />
+</xs:schema>

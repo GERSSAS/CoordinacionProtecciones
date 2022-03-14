@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.Result" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.Result" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.TechData" />
+  <xs:complexType name="ConnectionCheckSummaryResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Approved" type="xs:short" />
+      <xs:element minOccurs="0" name="ApprovedDach" type="xs:short" />
+      <xs:element minOccurs="0" name="ApprovedLoading" type="xs:short" />
+      <xs:element minOccurs="0" name="ApprovedNewLine" type="xs:short" />
+      <xs:element minOccurs="0" name="ApprovedNewNode" type="xs:short" />
+      <xs:element minOccurs="0" name="ApprovedUmax" type="xs:short" />
+      <xs:element minOccurs="0" name="ApprovedUmin" type="xs:short" />
+      <xs:element minOccurs="0" name="CalcMaxVoltageChange" type="xs:double" />
+      <xs:element minOccurs="0" name="ConnectionPointDeltaU" type="xs:double" />
+      <xs:element minOccurs="0" name="ConnectionPointU" type="xs:double" />
+      <xs:element minOccurs="0" name="ConnectionPointUp" type="xs:double" />
+      <xs:element minOccurs="0" name="DeltaLoadingMax" type="xs:double" />
+      <xs:element minOccurs="0" name="DeltaLosses" type="xs:double" />
+      <xs:element minOccurs="0" name="DeltaUconnection" type="xs:double" />
+      <xs:element minOccurs="0" name="DeltaUmax" type="xs:double" />
+      <xs:element minOccurs="0" name="HighestLoading" type="xs:double" />
+      <xs:element minOccurs="0" name="HighestU" type="xs:double" />
+      <xs:element minOccurs="0" name="HighestUp" type="xs:double" />
+      <xs:element minOccurs="0" name="LineHighestLoading" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LineHighestLoadingID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Losses" type="xs:double" />
+      <xs:element minOccurs="0" name="LossesTransformer" type="xs:double" />
+      <xs:element minOccurs="0" name="LowestU" type="xs:double" />
+      <xs:element minOccurs="0" name="LowestUp" type="xs:double" />
+      <xs:element minOccurs="0" name="MaxAllowedPower" type="xs:double" />
+      <xs:element minOccurs="0" name="MaxAllowedPowerRed" type="xs:double" />
+      <xs:element minOccurs="0" name="MaxAllowedPowerYellow" type="xs:double" />
+      <xs:element minOccurs="0" name="NewLineCost" type="xs:double" />
+      <xs:element minOccurs="0" name="NewLineCurrent" type="xs:double" />
+      <xs:element minOccurs="0" name="NewLineLoading" type="xs:double" />
+      <xs:element minOccurs="0" name="NewNodeU" type="xs:double" />
+      <xs:element minOccurs="0" name="NewNodeUp" type="xs:double" />
+      <xs:element minOccurs="0" name="NodeHighestUp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NodeHighestUpID" type="ser:guid" />
+      <xs:element minOccurs="0" name="NodeLowestUp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NodeLowestUpID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Power" type="xs:double" />
+      <xs:element minOccurs="0" name="RelativeVoltageRise" type="xs:double" />
+      <xs:element minOccurs="0" name="RunDach" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RunLf" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RunMaxPower" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ZSk2" type="xs:double" />
+      <xs:element minOccurs="0" name="Zbet" type="xs:double" />
+      <xs:element minOccurs="0" name="Zwink" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConnectionCheckSummaryResult" nillable="true" type="tns:ConnectionCheckSummaryResult" />
+  <xs:complexType name="ArrayOfFaultScanningResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FaultScanningResult" nillable="true" type="tns:FaultScanningResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFaultScanningResult" nillable="true" type="tns:ArrayOfFaultScanningResult" />
+  <xs:complexType name="FaultScanningResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.TechData" base="q1:NotifyBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EndNode" type="ser:guid" />
+          <xs:element minOccurs="0" name="FaultDistance" type="xs:double" />
+          <xs:element minOccurs="0" name="FaultLocation" type="ser:guid" />
+          <xs:element minOccurs="0" name="FaultType" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="InterNodes" nillable="true" type="q2:ArrayOfguid" />
+          <xs:element minOccurs="0" name="OperationalStateName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PathName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StartNode" type="ser:guid" />
+          <xs:element minOccurs="0" name="Status" type="xs:short" />
+          <xs:element minOccurs="0" name="TrippedRelays" nillable="true" type="tns:ArrayOfTrippedRelaysResult" />
+          <xs:element minOccurs="0" name="VariantName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FaultScanningResult" nillable="true" type="tns:FaultScanningResult" />
+  <xs:complexType name="ArrayOfTrippedRelaysResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrippedRelaysResult" nillable="true" type="tns:TrippedRelaysResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrippedRelaysResult" nillable="true" type="tns:ArrayOfTrippedRelaysResult" />
+  <xs:complexType name="TrippedRelaysResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/BCP.Neplan.Web.Models.TechData" base="q3:NotifyBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FaultCurrent" type="xs:double" />
+          <xs:element minOccurs="0" name="FaultDistance" type="xs:int" />
+          <xs:element minOccurs="0" name="FaultImpedance" type="xs:double" />
+          <xs:element minOccurs="0" name="IsChecked" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TripTime" type="xs:double" />
+          <xs:element minOccurs="0" name="TrippedRelay" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TrippedRelaysResult" nillable="true" type="tns:TrippedRelaysResult" />
+</xs:schema>

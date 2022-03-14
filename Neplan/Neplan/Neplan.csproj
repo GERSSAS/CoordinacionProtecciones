@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{366CF46B-47BD-4FCF-9BB5-65B5EBFE6E3E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Neplan_coordinacion</RootNamespace>
+    <AssemblyName>Neplan_coordinacion</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>C:\Users\luis.molina\Videos\new version\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>0B6AB225CB7FCE9F2F8839E75BAF344198F916C6</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Neplan_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>output_onlinepngtools_Bub_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Connected Services\NeplanService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="FormCoordinacionProtecciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCoordinacionProtecciones.Designer.cs">
+      <DependentUpon>FormCoordinacionProtecciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Webservice.cs" />
+    <EmbeddedResource Include="FormCoordinacionProtecciones.resx">
+      <DependentUpon>FormCoordinacionProtecciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Connected Services\NeplanService\NeplanService.wsdl" />
+    <None Include="Connected Services\NeplanService\NeplanService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService1.wsdl" />
+    <None Include="Connected Services\NeplanService\NeplanService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService14.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService15.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService16.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService17.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService18.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService19.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\NeplanService9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.AddElementsFromListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.AddNodesFromListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.AddSubLoadsFromListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.AnalysisReturnInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.AttributeItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.CommonModeItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.ExternalElement.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.ExternalFeeder.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.ExternalProject.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.ExternalTopologyInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.Find_Voltage_Level_of_One_Port_ElementResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetAllDiagramNamesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetAllElementsOfAreaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetAllElementsOfElementTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetAllElementsOfFeederResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetAllElementsOfProjectResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetAllElementsOfZoneResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetAllElementsWithOpenSwitchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetAttributeByElementIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetAttributeByElementNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetAttributeListByElementIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetAttributeListByElementNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetBusBarOf1PortElementByIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetBusBarOf1PortElementByNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetCoordinatesOfAllElementsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetCoordinatesOfElementByNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetCoordinatesOfElementResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetCustomerTypeDefinitionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetElementAttributeByIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetElementAttributeByNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetElementAttributeListByIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetElementAttributeListByNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetElementDataByIDandTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetElementDataByNameandTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetElementDataByNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetElementListAttributeByIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetRegulatorParameterByIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetRegulatorParameterByNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetRegulatorParameterListByIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.GetRegulatorParameterListByNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.ImportFromListFileAndDoLoadAllocationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.Insert1PortElementResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.InsertBusbarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.InsertGasNodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.InsertGraphicLayerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.InsertNodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.InsertNodeWithoutGraphicResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.InterfaceOPFSetting.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.LineSectionData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.NeplanDomainServiceImportReturnInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.NeplanServiceConnection_info.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.NeplanServiceElementResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.NeplanServiceLoadGeneration_info.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.PowerLoadData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.ReturnCode.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.SetDefaultValuesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.ShortCircuitLocation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.SwitchedAdmittanceBlock.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.TechDataCalcSetting.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.TechItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NeplanService\Neplan_coordinacion.NeplanService.ValidateCGMESModelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Neplan_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_gers_20121221.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1-6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7D3847D6D.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\NeplanService\NeplanService.disco" />
+    <None Include="Connected Services\NeplanService\configuration91.svcinfo" />
+    <None Include="Connected Services\NeplanService\configuration.svcinfo" />
+    <None Include="Connected Services\NeplanService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="logo_gers_20121221_rEY_icon.ico" />
+    <Content Include="output_onlinepngtools_Bub_icon.ico" />
+    <None Include="Resources\output-onlinepngtools %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\NeplanService\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

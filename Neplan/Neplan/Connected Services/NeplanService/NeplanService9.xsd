@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://BCP.ch/Neplan/Web/Models/CalcParameterData" elementFormDefault="qualified" targetNamespace="http://BCP.ch/Neplan/Web/Models/CalcParameterData" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://neplan1.gers.co/Services/External/NeplanService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfObjectiveFunctionsEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectiveFunctionsEntry" nillable="true" type="tns:ObjectiveFunctionsEntry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfObjectiveFunctionsEntry" nillable="true" type="tns:ArrayOfObjectiveFunctionsEntry" />
+  <xs:complexType name="ObjectiveFunctionsEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MinMax" type="xs:int" />
+      <xs:element minOccurs="0" name="NetworkGroupID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ObjectType" type="xs:int" />
+      <xs:element minOccurs="0" name="Weight" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectiveFunctionsEntry" nillable="true" type="tns:ObjectiveFunctionsEntry" />
+</xs:schema>
