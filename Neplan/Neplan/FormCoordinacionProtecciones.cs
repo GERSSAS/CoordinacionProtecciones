@@ -42,6 +42,7 @@ namespace Neplan
 
         List<string> NombreElementoR = new List<string>();
         List<string> TipoElementoR = new List<string>();
+        List<string> idElementoR = new List<string>();
         List<string> Puerto0ElementoR = new List<string>();
         List<string> Puerto1ElementoR = new List<string>();
         List<string> tipoDeFallaEnCorto = new List<string>();
@@ -139,7 +140,7 @@ namespace Neplan
                         {
                             dgvElements2.Rows.Add();
                             dgvElements2[1, contEleNam2].Value = item.Value;
-                          
+                            dgvElements2[3, contEleNam2].Value = item.Key;
                             contEleNam2++;
 
                         }
@@ -228,8 +229,16 @@ namespace Neplan
                         //realizarAnalisis();
                         //Thread analizar = new Thread(() => realizarAnalisis());
                         //analizar.Start();
-                       
-                        realizarAnalisis();
+
+                        MiLoading.Enabled = true;
+                        MiLoading.Visible = true;
+                        timer1.Enabled = true;
+                        timer1.Start();
+                        
+                        Thread analizar = new Thread(() => realizarAnalisis());
+                        analizar.SetApartmentState(ApartmentState.STA);
+                        analizar.Start();
+                        
                      
                     }
                     else
@@ -292,8 +301,7 @@ namespace Neplan
        
         private void realizarAnalisis()
         {
-            MiLoading.Enabled = true;
-            MiLoading.Visible = true;
+            
             
             var neplan = webservice.nepService;
 
@@ -319,6 +327,7 @@ namespace Neplan
                 {
                     NombreElementoR.Add(row2.Cells[1].Value.ToString());
                     TipoElementoR.Add(row2.Cells[2].Value.ToString());
+                    idElementoR.Add(row2.Cells[3].Value.ToString());
                     contElementoR++;
                 }
             }
@@ -400,7 +409,11 @@ namespace Neplan
                                                     //tring[] networkresultsSC = neplan.GetListResultSummary(proyecto, "ShortCircuit", new DateTime(), networkTypeGroupSC, null);
                                                     AnalysisReturnInfo analysis2 = neplan.AnalyseVariant(proyecto, Guid.NewGuid().ToString(), "ShortCircuit", "Default", string.Empty, string.Empty, string.Empty);
                                                     contadorAnalisis++;
-                                                    label11.Text = contadorAnalisis.ToString() + " Resultados de " + totalAnalisis.ToString() + " totales";
+                                                    label11.Invoke((Action)delegate
+                                                    {
+                                                        label11.Text = contadorAnalisis.ToString() + " Resultados de " + totalAnalisis.ToString() + " totales";
+                                                    });
+                                                    
                                                     if (analysis2.ReturnInfo == 1)//Verifica que el corto se ejecute corectamente
                                                     {
                                                         for (int fila = 0; fila < NombreElementoR.Count; fila++)
@@ -459,7 +472,13 @@ namespace Neplan
 
                                                 AnalysisReturnInfo analysis2 = neplan.AnalyseVariant(proyecto, Guid.NewGuid().ToString(), "ShortCircuit", "Default", string.Empty, string.Empty, string.Empty);
                                                 contadorAnalisis++;
-                                                label11.Text = contadorAnalisis.ToString() + " Resultados de " + totalAnalisis.ToString() + " totales";
+                                                label11.Invoke((Action)delegate
+                                                {
+                                                    label11.Text = contadorAnalisis.ToString() + " Resultados de " + totalAnalisis.ToString() + " totales";
+                                                });
+                                                
+
+
                                                 if (analysis2.ReturnInfo == 1)//Verifica que el corto se ejecute corectamente
                                                 {
                                                     for (int fila = 0; fila < NombreElementoR.Count; fila++)
@@ -521,8 +540,13 @@ namespace Neplan
                 }
             }
 
-            MiLoading.Visible = false;
+            MiLoading.Invoke((Action)delegate
+            {
+                MiLoading.Visible = false;
+            });
 
+
+            timer1.Stop();
             if (errorResults == true)
             {
                 MessageBox.Show("HUBO UN ERROR AL OBTENER RESULTADOS DE CORTO");
@@ -549,6 +573,7 @@ namespace Neplan
             oBook.Close();
             oApp.Quit();
 
+            crearTxt(savePath);
             /* obtiene todos los proceos de EXCEL abiertos en el sistema */
             System.Diagnostics.Process[] AllProcesses = System.Diagnostics.Process.GetProcessesByName("EXCEL");
 
@@ -566,8 +591,59 @@ namespace Neplan
 
 
 
+        private void crearTxt(string savePath) {
 
-        
+            string fileName = savePath+".txt";
+
+            try
+            {
+                // Check if file already exists. If yes, delete it.     
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
+
+                // Create a new file     
+                using (StreamWriter sw = File.CreateText(fileName))
+                {
+                    sw.WriteLine("Fecha de creación: {0}", DateTime.Now.ToString());
+                    sw.WriteLine("Nombre del proyecto: "+proyecto.ProjectName);
+                    sw.WriteLine(label12.Text);
+                    sw.WriteLine("Total elementos en falla: "+ idElements.Count);
+                    sw.WriteLine("Total elementos para ver resultados: " + NombreElementoR.Count);
+                    sw.WriteLine("Total analisis de corto: " + totalAnalisis.ToString());
+                    sw.WriteLine("---------------------------------------");
+                    sw.WriteLine("ELEMENTOS EN FALLA: ");
+
+                    for (int fila = 0; fila < idElements.Count; fila++)
+                    {
+                        sw.WriteLine(nomElementSel[fila] +","+ typeElementSel[fila] + "," + idElements[fila]);
+
+                    }
+
+                    sw.WriteLine("---------------------------------------");
+                    sw.WriteLine("ELEMENTOS PARA VER RESULTADOS: ");
+
+                    for (int fila = 0; fila < NombreElementoR.Count; fila++)
+                    {
+                        sw.WriteLine(NombreElementoR[fila] + "," + TipoElementoR[fila] + "," + idElementoR[fila]);
+                        
+                    }
+                     
+                }
+                // Write file contents on console.     
+              
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.ToString());
+            }
+
+
+        }
+
+
+
         private void contarTotalAnalisis() {
 
             int contadorLineas = 0;
@@ -914,12 +990,128 @@ namespace Neplan
         }
 
 
+
+
+
+
         #endregion
 
 
+        int TimeAllSecondes = 0;
+        int hh;
+        int mm;
+        int ss;
+        
+        private void timer1_Tick(object sender, EventArgs e)
+        {
 
+            TimeAllSecondes++;
        
-       
+            
+
+            TimeSpan time_Span = TimeSpan.FromSeconds(TimeAllSecondes);
+            hh = time_Span.Hours;
+            mm = time_Span.Minutes;
+            ss = time_Span.Seconds;
+
+            label12.Text = "Tiempo de analisis: " + hh + ":" + mm + ":" + ss;
+        }
+
+
+        List<string> idElementosFallaTxt = new List<string>();
+        List<string> idElementosResultadosTxt = new List<string>();
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            if (proyecto != null && proyecto.ProjectName != null)
+            {
+                string savePath = "";
+                OpenFileDialog sf = new OpenFileDialog();
+
+                sf.DefaultExt = "txt";
+                sf.RestoreDirectory = true;
+                /* si el usuari selecciona la carpeta donde va a guardar el excel, se guarda la ubicacion en la variable savePath */
+                if (sf.ShowDialog() == DialogResult.OK)
+                {
+                    savePath = sf.FileName;
+                }
+
+                try
+                {
+                    
+                    List<string> allLines = File.ReadAllLines(savePath).ToList();
+
+                    int contadorLineas = allLines.Count();
+
+                    int i = 8; 
+                    do
+                    {
+                        
+                        string elemento = allLines[i];
+                        string[] elementoPropiedades = elemento.Split(',');
+
+                        idElementosFallaTxt.Add(elementoPropiedades[2]);
+
+                        i++;
+
+
+                    } while (true != allLines[i].Contains("---------------------------------------"));
+
+                    foreach (string element in idElementosFallaTxt) {
+
+
+                        foreach (DataGridViewRow row2 in dgvElements1.Rows)
+                        {
+                            if (row2.Cells[3].Value.ToString() == element)
+                            {
+                                row2.Cells[0].Value = true;
+                                
+                            }
+                        }
+
+
+                    }
+
+
+                    i = i + 2;
+                    do
+                    {
+
+                        string elemento = allLines[i];
+                        string[] elementoPropiedades = elemento.Split(',');
+
+                        idElementosResultadosTxt.Add(elementoPropiedades[2]);
+
+                        i++;
+
+                    } while (i != contadorLineas);
+
+                    foreach (string element in idElementosResultadosTxt)
+                    {
+                        foreach (DataGridViewRow row2 in dgvElements2.Rows)
+                        {
+                            if (row2.Cells[3].Value.ToString() == element)
+                            {
+                                row2.Cells[0].Value = true;
+
+                            }
+                        }
+
+                    }
+
+
+                    MessageBox.Show("Los elementos fueron seleccionados correctamente.");
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show("Hubo un error al seleccionar los elementos.");
+                }
+            }
+            else {
+
+                MessageBox.Show("Por favor obtenga un proyecto");
+            }
+        }
     }
 }
 
